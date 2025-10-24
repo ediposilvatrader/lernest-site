@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Learnast – Educação Financeira com IA</title>
+    <meta name="description" content="Aprenda finanças pessoais com aulas curtas, trilhas guiadas e uma IA que te acompanha no dia a dia." />
+    <link rel="icon" href="favicon.ico" />
+    <!-- Tailwind via CDN (ok para protótipo/landing) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-950 text-gray-100">
+    <!-- NAV -->
+    <header class="w-full">
+      <nav class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-blue-500/20 border border-blue-400/30"></div>
+          <span class="font-semibold tracking-wide">Learnast</span>
+        </div>
+        <div class="hidden md:flex items-center gap-6 text-sm">
+          <a href="#sobre" class="hover:text-blue-300">Sobre</a>
+          <a href="#recursos" class="hover:text-blue-300">Recursos</a>
+          <a href="#roadmap" class="hover:text-blue-300">Roadmap</a>
+          <a href="#faq" class="hover:text-blue-300">FAQ</a>
+          <a href="#contato" class="hover:text-blue-300">Contato</a>
+        </div>
+        <a href="#espera" class="px-3 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-sm">Entrar na lista</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="relative overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-b from-blue-500/10 to-transparent"></div>
+      <div class="max-w-6xl mx-auto px-6 pt-16 pb-12 md:pt-24">
+        <div class="grid md:grid-cols-2 gap-10 items-center">
+          <div>
+            <h1 class="text-3xl md:text-5xl font-extrabold leading-tight">
+              Educação Financeira guiada por <span class="text-blue-400">IA</span>,
+              do básico ao avançado.
+            </h1>
+            <p class="mt-5 text-gray-300 md:text-lg">
+              Aulas curtas, trilhas práticas e uma IA que te acompanha nas decisões do dia a dia.
+              Aprenda, simule e evolua — no seu ritmo.
+            </p>
+            <!-- WAITLIST / MAILTO fallback -->
+            <form id="espera" class="mt-8 flex flex-col sm:flex-row gap-3" onsubmit="return joinWaitlist(event)">
+              <input id="email" type="email" required placeholder="Seu melhor e-mail"
+                     class="flex-1 px-4 py-3 rounded-lg bg-gray-900 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <button type="submit"
+                      class="px-5 py-3 rounded-lg bg-blue-600 hover:bg-blue-500 font-medium">
+                Quero na Beta
+              </button>
+            </form>
+            <p class="mt-2 text-xs text-gray-400">
+              *Sem spam. Usaremos seu e-mail apenas para avisar da beta.
+            </p>
+          </div>
+          <div class="relative">
+            <div class="aspect-video rounded-2xl border border-gray-800 bg-gradient-to-br from-gray-900 to-gray-800 p-4">
+              <div class="w-full h-full rounded-xl border border-gray-700 flex items-center justify-center">
+                <div class="text-center">
+                  <div class="text-sm uppercase tracking-widest text-gray-400">Prévia</div>
+                  <div class="mt-2 text-xl font-semibold">Dashboard do Learnast</div>
+                  <p class="mt-2 text-gray-400 text-sm">Em breve: trilhas, metas e relatórios.</p>
+                </div>
+              </div>
+            </div>
+            <div class="absolute -bottom-6 -right-4 bg-blue-600/10 border border-blue-500/30 text-blue-200 text-xs px-3 py-1 rounded-full">
+              v1.0 – Landing
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE -->
+    <section id="sobre" class="max-w-6xl mx-auto px-6 py-16">
+      <div class="grid md:grid-cols-2 gap-10 items-start">
+        <div>
+          <h2 class="text-2xl md:text-3xl font-bold">Por que o Learnast?</h2>
+          <p class="mt-4 text-gray-300">
+            A maioria dos apps de finanças ensina conceitos desconectados da sua realidade.
+            O Learnast une conteúdo aplicado, prática guiada e uma IA que entende suas metas
+            e rotina. É educação + execução, lado a lado.
+          </p>
+        </div>
+        <ul class="grid gap-4">
+          <li class="p-4 rounded-xl bg-gray-900 border border-gray-800">
+            <span class="font-semibold text-blue-300">Aulas curtas e diretas</span>
+            <p class="text-gray-400 text-sm mt-1">De 5–10 min. Conceito, exemplo e exercício.</p>
+          </li>
+          <li class="p-4 rounded-xl bg-gray-900 border border-gray-800">
+            <span class="font-semibold text-blue-300">IA que acompanha você</span>
+            <p class="text-gray-400 text-sm mt-1">Tira dúvidas, sugere trilhas e reforça hábitos.</p>
+          </li>
+          <li class="p-4 rounded-xl bg-gray-900 border border-gray-800">
+            <span class="font-semibold text-blue-300">Metas e relatórios</span>
+            <p class="text-gray-400 text-sm mt-1">Defina objetivos e veja sua evolução em tempo real.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- RECURSOS -->
+    <section id="recursos" class="max-w-6xl mx-auto px-6 py-16">
+      <h2 class="text-2xl md:text-3xl font-bold">O que vem na beta</h2>
+      <div class="mt-8 grid md:grid-cols-3 gap-6">
+        <div class="p-5 rounded-xl bg-gray-900 border border-gray-800">
+          <div class="text-sm text-gray-400 uppercase">Módulo 1</div>
+          <div class="mt-1 font-semibold">Orçamento Inteligente</div>
+          <p class="mt-2 text-sm text-gray-400">Ferramenta simples para planejar e ajustar gastos.</p>
+        </div>
+        <div class="p-5 rounded-xl bg-gray-900 border border-gray-800">
+          <div class="text-sm text-gray-400 uppercase">Módulo 2</div>
+          <div class="mt-1 font-semibold">Metas e Hábitos</div>
+          <p class="mt-2 text-sm text-gray-400">Metas mensais com acompanhamento da IA.</p>
+        </div>
+        <div class="p-5 rounded-xl bg-gray-900 border border-gray-800">
+          <div class="text-sm text-gray-400 uppercase">Módulo 3</div>
+          <div class="mt-1 font-semibold">Fundamentos de Investimentos</div>
+          <p class="mt-2 text-sm text-gray-400">Aprenda o básico e simule aportes.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROADMAP -->
+    <section id="roadmap" class="max-w-6xl mx-auto px-6 py-16">
+      <h2 class="text-2xl md:text-3xl font-bold">Roadmap</h2>
+      <ol class="mt-8 grid gap-4">
+        <li class="p-4 rounded-xl bg-gray-900 border border-gray-800">
+          <span class="font-semibold">v1.0 – Landing + Lista de Espera</span>
+          <p class="text-gray-400 text-sm mt-1">Página pública e captação de interessados.</p>
+        </li>
+        <li class="p-4 rounded-xl bg-gray-900 border border-gray-800">
+          <span class="font-semibold">v1.1 – Protótipo navegável</span>
+          <p class="text-gray-400 text-sm mt-1">Fluxos simulados (sem backend) para validação.</p>
+        </li>
+        <li class="p-4 rounded-xl bg-gray-900 border border-gray-800">
+          <span class="font-semibold">v2.0 – Beta fechada</span>
+          <p class="text-gray-400 text-sm mt-1">Conta de usuário, trilhas e IA básica.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="max-w-6xl mx-auto px-6 py-16">
+      <h2 class="text-2xl md:text-3xl font-bold">FAQ</h2>
+      <div class="mt-6 grid gap-4">
+        <details class="p-4 rounded-xl bg-gray-900 border border-gray-800">
+          <summary class="font-semibold cursor-pointer">Preciso já saber finanças para usar?</summary>
+          <p class="mt-2 text-sm text-gray-400">Não. O Learnast começa do zero e avança com você.</p>
+        </details>
+        <details class="p-4 rounded-xl bg-gray-900 border border-gray-800">
+          <summary class="font-semibold cursor-pointer">A IA vai tomar decisões por mim?</summary>
+          <p class="mt-2 text-sm text-gray-400">Não. A IA ajuda com informação e disciplina. Você decide.</p>
+        </details>
+        <details class="p-4 rounded-xl bg-gray-900 border border-gray-800">
+          <summary class="font-semibold cursor-pointer">Quando sai a versão beta?</summary>
+          <p class="mt-2 text-sm text-gray-400">Estamos preparando a v1.1. Os inscritos na lista recebem primeiro.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato" class="max-w-6xl mx-auto px-6 py-16">
+      <div class="rounded-2xl border border-gray-800 p-6 bg-gray-900">
+        <h2 class="text-xl font-bold">Fale com a gente</h2>
+        <p class="mt-2 text-gray-400 text-sm">Dúvidas, parcerias ou imprensa: <a href="mailto:contato@learnaste.com.br" class="text-blue-400 underline">contato@learnaste.com.br</a></p>
+      </div>
+    </section>
+
+    <footer class="border-t border-gray-800 py-10">
+      <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-400">
+        <div>© <span id="year"></span> Learnast. Todos os direitos reservados.</div>
+        <div class="flex items-center gap-4">
+          <a href="#" class="hover:text-blue-300">Termos</a>
+          <a href="#" class="hover:text-blue-300">Privacidade</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
