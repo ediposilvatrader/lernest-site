@@ -3,182 +3,242 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Lernest – Educação Financeira com IA</title>
-    <meta name="description" content="Aprenda finanças pessoais com aulas curtas, trilhas guiadas e uma IA que te acompanha no dia a dia." />
+    <title>Lernest — Sabedoria que rende</title>
+    <meta name="description" content="Lernest: educação financeira guiada por IA. Popularizamos investimentos com conteúdo leve, divertido e que realmente rende evolução." />
+    <meta property="og:title" content="Lernest — Sabedoria que rende" />
+    <meta property="og:description" content="Aprenda investimentos de forma leve e prática. Aulas curtas, trilhas, gamificação e um mascote que te guia." />
+    <meta property="og:type" content="website" />
     <link rel="icon" href="favicon.ico" />
-    <!-- Tailwind via CDN (ok para protótipo/landing) -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root{
+        --green-900:#042E2A;   /* Verde petróleo escuro */
+        --green-700:#0A615E;   /* Verde tartaruga */
+        --green-500:#25A675;   /* Verde claro evolutivo */
+        --gold-500:#F5B800;    /* Dourado */
+        --offwhite:#F9FAF9;    /* Fundo claro */
+      }
+      .brand-gradient{ background: linear-gradient(90deg,var(--green-700),var(--green-500)); }
+      .gold-chip{ background: linear-gradient(180deg,#FFD86B,#F5B800); }
+    </style>
   </head>
-  <body class="bg-gray-950 text-gray-100">
+  <body class="bg-[var(--offwhite)] text-[var(--green-900)] selection:bg-emerald-100/80">
     <!-- NAV -->
-    <header class="w-full">
+    <header class="w-full border-b border-zinc-200 bg-white/80 backdrop-blur">
       <nav class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        <div class="flex items-center gap-2">
-          <div class="w-8 h-8 rounded-lg bg-blue-500/20 border border-blue-400/30"></div>
-          <span class="font-semibold tracking-wide">Lernest</span>
-        </div>
+        <a class="flex items-center gap-3" href="#top" aria-label="Lernest - início">
+          <img src="assets/logo-horizontal.png" alt="Lernest — Sabedoria que rende" class="h-8 w-auto"/>
+        </a>
         <div class="hidden md:flex items-center gap-6 text-sm">
-          <a href="#sobre" class="hover:text-blue-300">Sobre</a>
-          <a href="#recursos" class="hover:text-blue-300">Recursos</a>
-          <a href="#roadmap" class="hover:text-blue-300">Roadmap</a>
-          <a href="#faq" class="hover:text-blue-300">FAQ</a>
-          <a href="#contato" class="hover:text-blue-300">Contato</a>
+          <a href="#missao" class="hover:text-[var(--green-700)]">Missão</a>
+          <a href="#recursos" class="hover:text-[var(--green-700)]">Recursos</a>
+          <a href="#mascote" class="hover:text-[var(--green-700)]">Leonardo</a>
+          <a href="#roadmap" class="hover:text-[var(--green-700)]">Roadmap</a>
+          <a href="#contato" class="hover:text-[var(--green-700)]">Contato</a>
         </div>
-        <a href="#espera" class="px-3 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-sm">Entrar na lista</a>
+        <a href="#espera" class="px-3 py-2 rounded-lg text-white bg-[var(--green-700)] hover:bg-[var(--green-500)] text-sm">Entrar na lista</a>
       </nav>
     </header>
 
     <!-- HERO -->
-    <section class="relative overflow-hidden">
-      <div class="absolute inset-0 bg-gradient-to-b from-blue-500/10 to-transparent"></div>
-      <div class="max-w-6xl mx-auto px-6 pt-16 pb-12 md:pt-24">
+    <section id="top" class="relative">
+      <div class="max-w-6xl mx-auto px-6 pt-12 pb-6 md:pt-16">
         <div class="grid md:grid-cols-2 gap-10 items-center">
           <div>
-            <h1 class="text-3xl md:text-5xl font-extrabold leading-tight">
-              Educação Financeira guiada por <span class="text-blue-400">IA</span>,
-              do básico ao avançado.
+            <span class="inline-flex items-center gap-2 text-xs font-medium text-[var(--green-700)]">
+              <span class="w-2 h-2 rounded-full bg-[var(--gold-500)]"></span> Sabedoria que rende
+            </span>
+            <h1 class="mt-3 text-3xl md:text-5xl font-extrabold leading-tight text-[var(--green-900)]">
+              Educação financeira <span class="text-[var(--green-700)]">leve</span>, prática e
+              <span class="brand-gradient bg-clip-text text-transparent">guiada por IA</span>.
             </h1>
-            <p class="mt-5 text-gray-300 md:text-lg">
-              Aulas curtas, trilhas práticas e uma IA que te acompanha nas decisões do dia a dia.
-              Aprenda, simule e evolua — no seu ritmo.
+            <p class="mt-5 text-zinc-700 md:text-lg">
+              Nossa missão é <b>popularizar o conhecimento sobre investimentos</b> e mostrar como
+              pode ser prazeroso aprender, evoluir e <b>alavancar seu capital</b> — com método, jogo
+              e constância.
             </p>
-            <!-- WAITLIST / MAILTO fallback -->
+
+            <!-- WAITLIST (mailto fallback – trocamos depois por Formspree) -->
             <form id="espera" class="mt-8 flex flex-col sm:flex-row gap-3" onsubmit="return joinWaitlist(event)">
               <input id="email" type="email" required placeholder="Seu melhor e-mail"
-                     class="flex-1 px-4 py-3 rounded-lg bg-gray-900 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                class="flex-1 px-4 py-3 rounded-lg bg-white border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-[var(--green-500)]"/>
               <button type="submit"
-                      class="px-5 py-3 rounded-lg bg-blue-600 hover:bg-blue-500 font-medium">
+                class="px-5 py-3 rounded-lg text-white bg-[var(--green-700)] hover:bg-[var(--green-500)] font-medium">
                 Quero na Beta
               </button>
             </form>
-            <p class="mt-2 text-xs text-gray-400">
-              *Sem spam. Usaremos seu e-mail apenas para avisar da beta.
-            </p>
+            <p class="mt-2 text-xs text-zinc-500">*Sem spam. Usaremos seu e-mail apenas para avisar sobre a beta.</p>
           </div>
+
           <div class="relative">
-            <div class="aspect-video rounded-2xl border border-gray-800 bg-gradient-to-br from-gray-900 to-gray-800 p-4">
-              <div class="w-full h-full rounded-xl border border-gray-700 flex items-center justify-center">
+            <div class="rounded-2xl border border-zinc-200 bg-white p-4 shadow-sm">
+              <div class="rounded-xl border border-zinc-200 p-4 grid gap-3">
+                <img src="assets/mascote.png" alt="Leonardo, mascote da Lernest" class="w-full h-auto rounded-xl"/>
                 <div class="text-center">
-                  <div class="text-sm uppercase tracking-widest text-gray-400">Prévia</div>
-                  <div class="mt-2 text-xl font-semibold">Dashboard do Lernest</div>
-                  <p class="mt-2 text-gray-400 text-sm">Em breve: trilhas, metas e relatórios.</p>
+                  <div class="text-xs uppercase tracking-widest text-zinc-500">Mascote Oficial</div>
+                  <div class="mt-1 text-base font-semibold text-[var(--green-900)]">Leonardo — seu guia de evolução</div>
                 </div>
               </div>
             </div>
-            <div class="absolute -bottom-6 -right-4 bg-blue-600/10 border border-blue-500/30 text-blue-200 text-xs px-3 py-1 rounded-full">
-              v1.0 – Landing
+            <div class="absolute -bottom-5 -right-3 text-[var(--green-700)] text-xs px-3 py-1 rounded-full bg-emerald-50 border border-emerald-100">
+              v1.2 — Identidade atualizada
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SOBRE -->
-    <section id="sobre" class="max-w-6xl mx-auto px-6 py-16">
+    <!-- MISSÃO / PROPÓSITO -->
+    <section id="missao" class="max-w-6xl mx-auto px-6 py-12">
       <div class="grid md:grid-cols-2 gap-10 items-start">
         <div>
-          <h2 class="text-2xl md:text-3xl font-bold">Por que o Lernest?</h2>
-          <p class="mt-4 text-gray-300">
-            A maioria dos apps de finanças ensina conceitos desconectados da sua realidade.
-            O Lernest une conteúdo aplicado, prática guiada e uma IA que entende suas metas
-            e rotina. É educação + execução, lado a lado.
+          <h2 class="text-2xl md:text-3xl font-bold text-[var(--green-900)]">Nossa missão</h2>
+          <p class="mt-4 text-zinc-700">
+            <b>Popularizar investimentos</b> com uma experiência divertida, motivadora e segura.
+            A Lernest combina conteúdo claro, <b>gamificação</b> e acompanhamento por IA para que
+            você avance com constância — como quem <b>joga e evolui</b>.
           </p>
+          <ul class="mt-6 grid gap-3">
+            <li class="flex items-start gap-3">
+              <span class="mt-1 w-2 h-2 rounded-full gold-chip"></span>
+              <p><b>Sabedoria acessível:</b> aulas curtas, linguagem simples e exemplos práticos.</p>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-1 w-2 h-2 rounded-full gold-chip"></span>
+              <p><b>Autoridade com diversão:</b> aprendizados sérios, com leveza e motivação.</p>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-1 w-2 h-2 rounded-full gold-chip"></span>
+              <p><b>Evolução que rende:</b> metas, trilhas e relatórios para ver seu progresso.</p>
+            </li>
+          </ul>
         </div>
-        <ul class="grid gap-4">
-          <li class="p-4 rounded-xl bg-gray-900 border border-gray-800">
-            <span class="font-semibold text-blue-300">Aulas curtas e diretas</span>
-            <p class="text-gray-400 text-sm mt-1">De 5–10 min. Conceito, exemplo e exercício.</p>
-          </li>
-          <li class="p-4 rounded-xl bg-gray-900 border border-gray-800">
-            <span class="font-semibold text-blue-300">IA que acompanha você</span>
-            <p class="text-gray-400 text-sm mt-1">Tira dúvidas, sugere trilhas e reforça hábitos.</p>
-          </li>
-          <li class="p-4 rounded-xl bg-gray-900 border border-gray-800">
-            <span class="font-semibold text-blue-300">Metas e relatórios</span>
-            <p class="text-gray-400 text-sm mt-1">Defina objetivos e veja sua evolução em tempo real.</p>
-          </li>
-        </ul>
+        <div class="rounded-2xl border border-zinc-200 p-6 bg-white">
+          <img src="assets/logo-vertical.png" alt="Logotipo vertical da Lernest" class="w-full h-auto"/>
+          <div class="mt-4 text-sm text-zinc-600">
+            Versão vertical — uso recomendado em redes sociais e materiais institucionais.
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- RECURSOS -->
-    <section id="recursos" class="max-w-6xl mx-auto px-6 py-16">
-      <h2 class="text-2xl md:text-3xl font-bold">O que vem na beta</h2>
+    <section id="recursos" class="max-w-6xl mx-auto px-6 py-12">
+      <h2 class="text-2xl md:text-3xl font-bold text-[var(--green-900)]">Como a Lernest te ajuda</h2>
       <div class="mt-8 grid md:grid-cols-3 gap-6">
-        <div class="p-5 rounded-xl bg-gray-900 border border-gray-800">
-          <div class="text-sm text-gray-400 uppercase">Módulo 1</div>
-          <div class="mt-1 font-semibold">Orçamento Inteligente</div>
-          <p class="mt-2 text-sm text-gray-400">Ferramenta simples para planejar e ajustar gastos.</p>
+        <div class="p-5 rounded-xl bg-white border border-zinc-200">
+          <div class="text-xs text-zinc-500 uppercase">Módulo 1</div>
+          <div class="mt-1 font-semibold text-[var(--green-900)]">Fundamentos que rendem</div>
+          <p class="mt-2 text-sm text-zinc-600">Aulas curtas e diretas: conceito, exemplo e exercício.</p>
         </div>
-        <div class="p-5 rounded-xl bg-gray-900 border border-gray-800">
-          <div class="text-sm text-gray-400 uppercase">Módulo 2</div>
-          <div class="mt-1 font-semibold">Metas e Hábitos</div>
-          <p class="mt-2 text-sm text-gray-400">Metas mensais com acompanhamento da IA.</p>
+        <div class="p-5 rounded-xl bg-white border border-zinc-200">
+          <div class="text-xs text-zinc-500 uppercase">Módulo 2</div>
+          <div class="mt-1 font-semibold text-[var(--green-900)]">Metas & hábitos</div>
+          <p class="mt-2 text-sm text-zinc-600">Trilhas com metas mensais e reforço de disciplina.</p>
         </div>
-        <div class="p-5 rounded-xl bg-gray-900 border border-gray-800">
-          <div class="text-sm text-gray-400 uppercase">Módulo 3</div>
-          <div class="mt-1 font-semibold">Fundamentos de Investimentos</div>
-          <p class="mt-2 text-sm text-gray-400">Aprenda o básico e simule aportes.</p>
+        <div class="p-5 rounded-xl bg-white border border-zinc-200">
+          <div class="text-xs text-zinc-500 uppercase">Módulo 3</div>
+          <div class="mt-1 font-semibold text-[var(--green-900)]">IA que acompanha</div>
+          <p class="mt-2 text-sm text-zinc-600">Dúvidas, rotas de estudo e lembretes inteligentes.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MASCOTE -->
+    <section id="mascote" class="max-w-6xl mx-auto px-6 py-12">
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div class="order-2 md:order-1">
+          <h2 class="text-2xl md:text-3xl font-bold text-[var(--green-900)]">Leonardo, seu guia</h2>
+          <p class="mt-4 text-zinc-700">
+            O Leonardo é a tradução da nossa personalidade: <b>convidativo, confiável e divertido</b>.
+            Ele celebra cada avanço e mantém você motivado a continuar jogando o jogo do crescimento.
+          </p>
+          <ul class="mt-6 grid gap-2 text-sm text-zinc-700">
+            <li>• Dicas rápidas e lembretes inteligentes</li>
+            <li>• Onboarding e acompanhamento das trilhas</li>
+            <li>• Presença em campanhas e materiais didáticos</li>
+          </ul>
+        </div>
+        <div class="order-1 md:order-2 rounded-2xl border border-zinc-200 bg-white p-6">
+          <img src="assets/mascote.png" alt="Mascote Leonardo" class="w-full h-auto rounded-xl"/>
         </div>
       </div>
     </section>
 
     <!-- ROADMAP -->
-    <section id="roadmap" class="max-w-6xl mx-auto px-6 py-16">
-      <h2 class="text-2xl md:text-3xl font-bold">Roadmap</h2>
-      <ol class="mt-8 grid gap-4">
-        <li class="p-4 rounded-xl bg-gray-900 border border-gray-800">
-          <span class="font-semibold">v1.0 – Landing + Lista de Espera</span>
-          <p class="text-gray-400 text-sm mt-1">Página pública e captação de interessados.</p>
+    <section id="roadmap" class="max-w-6xl mx-auto px-6 py-12">
+      <h2 class="text-2xl md:text-3xl font-bold text-[var(--green-900)]">Roadmap</h2>
+      <ol class="mt-6 grid gap-4">
+        <li class="p-4 rounded-xl bg-white border border-zinc-200">
+          <span class="font-semibold text-[var(--green-900)]">v1.0 — Landing + Lista de Espera</span>
+          <p class="text-sm text-zinc-600 mt-1">Presença oficial e captação de interessados.</p>
         </li>
-        <li class="p-4 rounded-xl bg-gray-900 border border-gray-800">
-          <span class="font-semibold">v1.1 – Protótipo navegável</span>
-          <p class="text-gray-400 text-sm mt-1">Fluxos simulados (sem backend) para validação.</p>
+        <li class="p-4 rounded-xl bg-white border border-zinc-200">
+          <span class="font-semibold text-[var(--green-900)]">v1.1 — Protótipo navegável</span>
+          <p class="text-sm text-zinc-600 mt-1">Fluxos simulados (sem backend) para validação.</p>
         </li>
-        <li class="p-4 rounded-xl bg-gray-900 border border-gray-800">
-          <span class="font-semibold">v2.0 – Beta fechada</span>
-          <p class="text-gray-400 text-sm mt-1">Conta de usuário, trilhas e IA básica.</p>
+        <li class="p-4 rounded-xl bg-white border border-zinc-200">
+          <span class="font-semibold text-[var(--green-900)]">v2.0 — Beta fechada</span>
+          <p class="text-sm text-zinc-600 mt-1">Conta, trilhas, metas e IA básica.</p>
         </li>
       </ol>
     </section>
 
-    <!-- FAQ -->
-    <section id="faq" class="max-w-6xl mx-auto px-6 py-16">
-      <h2 class="text-2xl md:text-3xl font-bold">FAQ</h2>
-      <div class="mt-6 grid gap-4">
-        <details class="p-4 rounded-xl bg-gray-900 border border-gray-800">
-          <summary class="font-semibold cursor-pointer">Preciso já saber finanças para usar?</summary>
-          <p class="mt-2 text-sm text-gray-400">Não. O Lernest começa do zero e avança com você.</p>
-        </details>
-        <details class="p-4 rounded-xl bg-gray-900 border border-gray-800">
-          <summary class="font-semibold cursor-pointer">A IA vai tomar decisões por mim?</summary>
-          <p class="mt-2 text-sm text-gray-400">Não. A IA ajuda com informação e disciplina. Você decide.</p>
-        </details>
-        <details class="p-4 rounded-xl bg-gray-900 border border-gray-800">
-          <summary class="font-semibold cursor-pointer">Quando sai a versão beta?</summary>
-          <p class="mt-2 text-sm text-gray-400">Estamos preparando a v1.1. Os inscritos na lista recebem primeiro.</p>
-        </details>
+    <!-- LOGO SHOWCASE -->
+    <section class="max-w-6xl mx-auto px-6 py-12">
+      <div class="grid md:grid-cols-2 gap-10">
+        <div class="rounded-2xl border border-zinc-200 p-6 bg-white">
+          <img src="assets/logo-horizontal.png" alt="Logotipo horizontal da Lernest" class="w-full h-auto"/>
+          <div class="mt-3 text-sm text-zinc-600">Versão horizontal — uso em cabeçalhos e site.</div>
+        </div>
+        <div class="rounded-2xl border border-zinc-200 p-6 bg-white">
+          <img src="assets/logo-vertical.png" alt="Logotipo vertical da Lernest" class="w-full h-auto"/>
+          <div class="mt-3 text-sm text-zinc-600">Versão vertical — uso em redes e institucionais.</div>
+        </div>
       </div>
     </section>
 
     <!-- CONTATO -->
-    <section id="contato" class="max-w-6xl mx-auto px-6 py-16">
-      <div class="rounded-2xl border border-gray-800 p-6 bg-gray-900">
-        <h2 class="text-xl font-bold">Fale com a gente</h2>
-        <p class="mt-2 text-gray-400 text-sm">Dúvidas, parcerias ou imprensa: <a href="mailto:contato@learnaste.com.br" class="text-blue-400 underline">contato@lernest.com.br</a></p>
+    <section id="contato" class="max-w-6xl mx-auto px-6 py-12">
+      <div class="rounded-2xl border border-zinc-200 p-6 bg-white flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div>
+          <h3 class="text-xl font-bold text-[var(--green-900)]">Fale com a gente</h3>
+          <p class="mt-1 text-sm text-zinc-600">
+            Dúvidas, parcerias ou imprensa: <a href="mailto:contato@lernest.com.br" class="underline text-[var(--green-700)]">contato@lernest.com.br</a>
+          </p>
+        </div>
+        <a href="#espera" class="px-4 py-2 rounded-lg text-white bg-[var(--green-700)] hover:bg-[var(--green-500)] text-sm">
+          Entrar na lista da Beta
+        </a>
       </div>
     </section>
 
-    <footer class="border-t border-gray-800 py-10">
-      <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-400">
-        <div>© <span id="year"></span> Lernest. Todos os direitos reservados.</div>
+    <!-- FOOTER -->
+    <footer class="border-t border-zinc-200 py-8">
+      <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-zinc-600">
+        <div class="flex items-center gap-3">
+          <img src="assets/logo-horizontal.png" alt="Lernest" class="h-5 w-auto"/>
+          <span>© <span id="year"></span> Lernest. Todos os direitos reservados.</span>
+        </div>
         <div class="flex items-center gap-4">
-          <a href="#" class="hover:text-blue-300">Termos</a>
-          <a href="#" class="hover:text-blue-300">Privacidade</a>
+          <a href="#" class="hover:text-[var(--green-700)]">Termos</a>
+          <a href="#" class="hover:text-[var(--green-700)]">Privacidade</a>
         </div>
       </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+      function joinWaitlist(e){
+        e.preventDefault();
+        const email = document.getElementById("email").value.trim();
+        if(!email) return false;
+        const subject = encodeURIComponent("Quero entrar na beta do Lernest");
+        const body = encodeURIComponent(`Olá, quero participar da beta. Meu e-mail é: ${email}`);
+        window.location.href = `mailto:contato@lernest.com.br?subject=${subject}&body=${body}`;
+        setTimeout(()=>alert("Abrimos seu e-mail padrão para enviar a solicitação. Se preferir, escreva para contato@lernest.com.br"), 600);
+        return false;
+      }
+    </script>
   </body>
 </html>
