@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Obrigado! — Lernest</title>
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="favicon.ico" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root{
+        --green-900:#042E2A; --green-700:#0A615E; --green-500:#25A675; --offwhite:#FAFBFA;
+      }
+      .shadow-soft { box-shadow: 0 10px 30px rgba(4,46,42,.06); }
+    </style>
+  </head>
+  <body class="bg-[var(--offwhite)] text-[var(--green-900)]">
+    <main class="min-h-screen grid place-items-center px-6 py-16">
+      <div class="max-w-xl w-full bg-white border border-zinc-200 rounded-2xl p-8 shadow-soft text-center">
+        <img src="assets/mascote.png" alt="Leonardo" class="w-24 h-24 mx-auto rounded-xl mb-4"/>
+        <h1 class="text-3xl font-extrabold">Inscrição recebida! 💚</h1>
+        <p class="mt-3 text-zinc-700">
+          Obrigado por entrar na lista da <b>beta da Lernest</b>. Assim que abrirmos os convites,
+          você receberá um e-mail com as instruções para acesso.
+        </p>
+        <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
+          <a href="./index.html#como-funciona"
+             class="px-5 py-3 rounded-lg border border-zinc-300 bg-white hover:bg-zinc-50 font-medium">
+            Ver como funciona
+          </a>
+          <a href="./index.html"
+             class="px-5 py-3 rounded-lg text-white bg-[var(--green-700)] hover:bg-[var(--green-500)] font-medium">
+            Voltar ao início
+          </a>
+        </div>
+        <p class="mt-6 text-sm text-zinc-500">
+          Dúvidas? <a href="mailto:contato@lernest.com.br" class="underline">contato@lernest.com.br</a>
+        </p>
+      </div>
+    </main>
+  </body>
+</html>
