@@ -12,31 +12,62 @@
         --green-900:#042E2A;
         --green-700:#0A615E;
         --green-500:#25A675;
-        --green-300:#A8E5C0;
         --offwhite:#FAFBFA;
       }
 
-      /* Fundo com degradê e textura de grid */
-      body {
-        background: linear-gradient(160deg, var(--offwhite) 20%, rgba(37,166,117,0.15) 100%);
-        color: var(--green-900);
-      }
+      /* =====================
+         ANIMAÇÕES E ESTILOS
+      ===================== */
 
-      .bg-grid {
+      /* Fundo animado com grid e gradiente */
+      @keyframes bgShift {
+        0% { background-position: 0% 0%; }
+        50% { background-position: 100% 100%; }
+        100% { background-position: 0% 0%; }
+      }
+      .animated-bg {
         background-image:
           radial-gradient(rgba(10,97,94,0.08) 1px, transparent 1px),
-          radial-gradient(rgba(10,97,94,0.06) 1px, transparent 1px);
-        background-position: 0 0, 10px 10px;
-        background-size: 20px 20px;
+          radial-gradient(rgba(10,97,94,0.06) 1px, transparent 1px),
+          linear-gradient(160deg, var(--offwhite) 20%, rgba(37,166,117,0.18) 100%);
+        background-size: 20px 20px, 20px 20px, 200% 200%;
+        animation: bgShift 18s ease-in-out infinite;
       }
+
+      /* Flutuar + zoom do Leonardo */
+      @keyframes float {
+        0%,100% { transform: translateY(0); }
+        50%     { transform: translateY(-6px); }
+      }
+      .img-float { animation: float 3.8s ease-in-out infinite; }
+      .img-hover-zoom { transition: transform .25s ease; }
+      .img-hover-zoom:hover { transform: scale(1.04); }
+
+      /* Fade + slide do card */
+      @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      .card-entrance {
+        animation: fadeUp .6s ease-out both .15s;
+      }
+
+      /* Botão com leve pulso */
+      .btn-pulse { transition: transform .18s ease; }
+      .btn-pulse:hover { transform: translateY(-1px) scale(1.02); }
+      .btn-pulse:active { transform: translateY(0) scale(0.99); }
 
       .shadow-soft { box-shadow: 0 10px 30px rgba(4,46,42,.08); }
     </style>
   </head>
 
-  <body class="min-h-screen bg-grid flex items-center justify-center px-6 py-16">
-    <main class="max-w-xl w-full bg-white/90 backdrop-blur-md border border-zinc-200 rounded-2xl p-10 shadow-soft text-center">
-      <img src="assets/leonardo-agradecendo.png" alt="Leonardo agradecendo" class="w-32 h-32 mx-auto mb-6 rounded-xl"/>
+  <body class="min-h-screen animated-bg flex items-center justify-center px-6 py-16">
+
+    <!-- CARD CENTRAL -->
+    <main class="max-w-xl w-full bg-white/90 backdrop-blur-md border border-zinc-200 rounded-2xl p-10 shadow-soft text-center card-entrance">
+      <img src="assets/leonardo-agradecendo.png" 
+           alt="Leonardo agradecendo" 
+           class="w-32 h-32 mx-auto mb-6 rounded-xl img-float img-hover-zoom"/>
 
       <h1 class="text-3xl font-extrabold text-[var(--green-700)]">Inscrição recebida! 💚</h1>
       <p class="mt-3 text-zinc-700 text-lg">
@@ -46,11 +77,11 @@
 
       <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
         <a href="./index.html#como-funciona"
-           class="px-5 py-3 rounded-lg border border-zinc-300 bg-white hover:bg-zinc-50 font-medium">
+           class="px-5 py-3 rounded-lg border border-zinc-300 bg-white hover:bg-zinc-50 font-medium btn-pulse">
           Ver como funciona
         </a>
         <a href="./index.html"
-           class="px-5 py-3 rounded-lg text-white bg-[var(--green-700)] hover:bg-[var(--green-500)] font-medium">
+           class="px-5 py-3 rounded-lg text-white bg-[var(--green-700)] hover:bg-[var(--green-500)] font-medium btn-pulse">
           Voltar ao início
         </a>
       </div>
@@ -59,5 +90,56 @@
         Dúvidas? <a href="mailto:contato@lernest.com.br" class="underline">contato@lernest.com.br</a>
       </p>
     </main>
+
+    <!-- CONFETE -->
+    <script>
+    (function confetti() {
+      const N = 60;
+      const DURATION = 1600;
+      const COLORS = ['#0A615E','#25A675','#F5B800','#8ED7B0','#FAD98B'];
+
+      const container = document.createElement('div');
+      container.style.position = 'fixed';
+      container.style.inset = 0;
+      container.style.pointerEvents = 'none';
+      container.style.overflow = 'hidden';
+      document.body.appendChild(container);
+
+      function piece() {
+        const el = document.createElement('span');
+        const size = 6 + Math.random()*8;
+        const startX = Math.random()*100;
+        const rot = Math.random()*360;
+        el.style.position = 'absolute';
+        el.style.left = startX + 'vw';
+        el.style.top = '-10px';
+        el.style.width = size + 'px';
+        el.style.height = size*0.6 + 'px';
+        el.style.background = COLORS[(Math.random()*COLORS.length)|0];
+        el.style.transform = `rotate(${rot}deg)`;
+        el.style.opacity = .95;
+        el.style.borderRadius = '2px';
+        container.appendChild(el);
+
+        const endY = 100 + Math.random()*20;
+        const drift = (Math.random()*40-20);
+        const duration = DURATION + Math.random()*600;
+        const start = performance.now();
+
+        function tick(now){
+          const t = Math.min((now-start)/duration, 1);
+          const eased = 1 - Math.pow(1-t, 3);
+          el.style.transform = `translate(${drift*eased}vw, ${endY*eased}vh) rotate(${rot + 360*t}deg)`;
+          el.style.opacity = 1 - t;
+          if (t < 1) requestAnimationFrame(tick);
+          else el.remove();
+        }
+        requestAnimationFrame(tick);
+      }
+
+      for (let i=0;i<N;i++) setTimeout(piece, i*10);
+      setTimeout(()=>container.remove(), DURATION+1200);
+    })();
+    </script>
   </body>
 </html>
