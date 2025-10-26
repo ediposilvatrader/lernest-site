@@ -9,13 +9,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       :root{
-        --green-900:#042E2A;   /* Verde petróleo escuro */
-        --green-700:#0A615E;   /* Verde tartaruga */
-        --green-500:#25A675;   /* Verde claro evolutivo */
-        --gold-500:#F5B800;    /* Dourado */
-        --offwhite:#FAFBFA;    /* Fundo claro */
+        --green-900:#042E2A;
+        --green-700:#0A615E;
+        --green-500:#25A675;
+        --gold-500:#F5B800;
+        --offwhite:#FAFBFA;
       }
-      /* Texturas leves para “clima de jogo” */
       .bg-grid {
         background-image:
           radial-gradient(rgba(10,97,94,0.08) 1px, transparent 1px),
@@ -46,7 +45,7 @@
       </nav>
     </header>
 
-    <!-- HERO GAMIFICADO -->
+    <!-- HERO -->
     <section id="top" class="relative">
       <div class="max-w-7xl mx-auto px-6 py-10 md:py-16 grid md:grid-cols-2 gap-10 items-center">
         <div>
@@ -59,39 +58,15 @@
           <p class="mt-5 text-lg text-zinc-700">
             A Lernest transforma o conhecimento em um jogo de evolução: você avança por trilhas,
             enfrenta desafios práticos, ganha conquistas e vê seu progresso se tornar resultado
-            no mundo real. Sem jargão, sem enrolação, somente o que importa para construir
-            confiança e começar a investir com segurança.
+            no mundo real.
           </p>
-          <div class="mt-6 flex flex-wrap items-center gap-3">
-            <a href="#beta" class="px-5 py-3 rounded-lg text-white bg-[var(--green-700)] hover:bg-[var(--green-500)] font-medium">Quero entrar na beta grátis</a>
-            <a href="#como-funciona" class="px-5 py-3 rounded-lg border border-zinc-300 bg-white hover:bg-zinc-50 font-medium">Ver como funciona</a>
-            <span class="ml-2 inline-flex items-center gap-2 text-xs text-zinc-600">
-              <span class="w-2 h-2 rounded-full bg-emerald-400"></span> progresso salvo • desafios semanais
-            </span>
-          </div>
         </div>
-
-        <!-- Banner do Leonardo (usa hero-banner.png se existir; senão, mascote.png) -->
         <div class="relative">
           <div class="rounded-2xl border border-zinc-200 bg-white p-4 shadow-soft bg-grid">
             <picture>
               <source srcset="assets/hero-banner.png" />
               <img src="assets/mascote.png" alt="Leonardo em cena — seu guia de evolução" class="w-full h-auto rounded-xl"/>
             </picture>
-            <div class="mt-4 grid grid-cols-3 gap-3 text-center">
-              <div class="rounded-xl border border-emerald-100 bg-emerald-50 py-3">
-                <div class="text-xs text-emerald-700">XP total</div>
-                <div class="text-lg font-semibold text-[var(--green-900)]">1.250</div>
-              </div>
-              <div class="rounded-xl border border-amber-100 bg-amber-50 py-3">
-                <div class="text-xs text-amber-700">Ofensiva</div>
-                <div class="text-lg font-semibold text-[var(--green-900)]">7 dias</div>
-              </div>
-              <div class="rounded-xl border border-indigo-100 bg-indigo-50 py-3">
-                <div class="text-xs text-indigo-700">Desafios</div>
-                <div class="text-lg font-semibold text-[var(--green-900)]">3/5</div>
-              </div>
-            </div>
           </div>
           <div class="absolute -bottom-5 -right-3 text-[var(--green-700)] text-xs px-3 py-1 rounded-full bg-emerald-50 border border-emerald-100">
             v2.0 — Landing gamificada
@@ -100,145 +75,17 @@
       </div>
     </section>
 
-    <!-- COMO FUNCIONA (explicativo, sem IA) -->
+    <!-- COMO FUNCIONA (resumido) -->
     <section id="como-funciona" class="max-w-7xl mx-auto px-6 py-14">
       <div class="max-w-3xl">
         <h2 class="text-2xl md:text-3xl font-bold">Como a Lernest te leva do zero à confiança</h2>
         <p class="mt-4 text-zinc-700 text-lg">
-          A base do app é simples: você segue <b>trilhas</b> com aulas curtas e desafios práticos.
-          Cada passo foi desenhado para gerar entendimento real — não memorização — e para
-          te colocar em movimento com um plano claro. Enquanto avança, você desbloqueia
-          <b>conquistas</b>, soma <b>XP</b> e acompanha sua <b>evolução</b> em um painel que mostra
-          aquilo que realmente importa: hábitos, metas e consistência.
+          Trilhas curtas, desafios práticos, conquistas e XP. Evolução de verdade, no seu ritmo.
         </p>
       </div>
-      <div class="mt-8 grid md:grid-cols-3 gap-6">
-        <div class="p-6 rounded-xl bg-white border border-zinc-200 shadow-soft">
-          <div class="text-sm text-zinc-500">Passo 1</div>
-          <h3 class="mt-1 font-semibold">Aprenda o essencial</h3>
-          <p class="mt-2 text-zinc-700 text-sm">Aulas curtas, linguagem direta e exemplos práticos. Nada de jargão desnecessário.</p>
-        </div>
-        <div class="p-6 rounded-xl bg-white border border-zinc-200 shadow-soft">
-          <div class="text-sm text-zinc-500">Passo 2</div>
-          <h3 class="mt-1 font-semibold">Pratique com desafios</h3>
-          <p class="mt-2 text-zinc-700 text-sm">Desafios semanais, simulador simples e metas claras para ganhar confiança.</p>
-        </div>
-        <div class="p-6 rounded-xl bg-white border border-zinc-200 shadow-soft">
-          <div class="text-sm text-zinc-500">Passo 3</div>
-          <h3 class="mt-1 font-semibold">Veja seu progresso</h3>
-          <p class="mt-2 text-zinc-700 text-sm">Acompanhe XP, ofensiva e conquistas. Sua constância vira evolução de verdade.</p>
-        </div>
-      </div>
     </section>
 
-    <!-- POR QUE É DIFERENTE (comparativo curto + narrativa) -->
-    <section id="por-que" class="max-w-7xl mx-auto px-6 py-14">
-      <div class="grid md:grid-cols-2 gap-10 items-start">
-        <div>
-          <h2 class="text-2xl md:text-3xl font-bold">Por que a Lernest é diferente</h2>
-          <p class="mt-4 text-zinc-700 text-lg">
-            A maioria dos cursos são longos, teóricos e desmotivadores. A Lernest faz o oposto:
-            <b>conteúdo leve</b>, <b>prática guiada</b> e sensação constante de avanço. Você não
-            precisa estudar por horas para sentir evolução — precisa de uma experiência bem
-            desenhada, que respeite seu tempo e coloque você no controle.
-          </p>
-          <div class="mt-6 p-4 rounded-xl bg-white border border-zinc-200 shadow-soft">
-            <table class="w-full text-sm">
-              <thead>
-                <tr class="text-left text-zinc-500">
-                  <th class="py-2"> </th>
-                  <th class="py-2">Cursos tradicionais</th>
-                  <th class="py-2">Lernest</th>
-                </tr>
-              </thead>
-              <tbody class="align-top">
-                <tr>
-                  <td class="py-2 font-medium">Formato</td>
-                  <td class="py-2 text-zinc-600">Aulas longas</td>
-                  <td class="py-2 text-zinc-900">Aulas curtas e diretas</td>
-                </tr>
-                <tr>
-                  <td class="py-2 font-medium">Prática</td>
-                  <td class="py-2 text-zinc-600">Teoria sem aplicação</td>
-                  <td class="py-2 text-zinc-900">Desafios e simulador simples</td>
-                </tr>
-                <tr>
-                  <td class="py-2 font-medium">Motivação</td>
-                  <td class="py-2 text-zinc-600">Difícil manter foco</td>
-                  <td class="py-2 text-zinc-900">Conquistas, XP e Ofensiva</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- Conteúdo que você aprende (mais explicativo) -->
-        <div id="conteudo" class="rounded-2xl border border-zinc-200 bg-white p-6 shadow-soft">
-          <h3 class="text-lg font-semibold">O que você vai aprender</h3>
-          <p class="mt-2 text-zinc-700">
-            Você começa construindo uma base sólida: orçamento inteligente, metas claras e
-            mentalidade de longo prazo. Depois, avança para os principais veículos de
-            investimento e aprende a montar uma carteira coerente com seu perfil e objetivos.
-          </p>
-          <ul class="mt-4 grid gap-2 text-sm text-zinc-700">
-            <li>• Planejamento e hábitos financeiros</li>
-            <li>• Fundamentos e Técnica: renda fixa, fundos e ações</li>
-            <li>• Diversificação e metas de aporte</li>
-            <li>• Controle emocional e consistência</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- MASCOTE: LEONARDO COMO MENTOR -->
-    <section id="mascote" class="max-w-7xl mx-auto px-6 py-14">
-      <div class="grid md:grid-cols-2 gap-10 items-center">
-        <div class="order-2 md:order-1">
-          <h2 class="text-2xl md:text-3xl font-bold">Leonardo, seu guia nessa jornada</h2>
-          <p class="mt-4 text-zinc-700 text-lg">
-            O Leonardo representa o jeito Lernest de ensinar: calmo, acolhedor e sempre
-            motivador. Ele aparece nas telas certas, com mensagens curtas que te ajudam a
-            manter a disciplina, celebrar cada conquista e seguir consistente — no seu ritmo.
-          </p>
-          <p class="mt-4 text-zinc-700">
-            Não é sobre decorar termos: é sobre entender o suficiente para agir com confiança
-            e transformar pequenas decisões em progresso real.
-          </p>
-        </div>
-        <div class="order-1 md:order-2 rounded-2xl border border-zinc-200 bg-white p-6 shadow-soft">
-          <img src="assets/mascote.png" alt="Mascote Leonardo" class="w-full h-auto rounded-xl"/>
-        </div>
-      </div>
-    </section>
-
-    <!-- ROADMAP (IA só no futuro) -->
-    <section id="roadmap" class="max-w-7xl mx-auto px-6 py-14">
-      <h2 class="text-2xl md:text-3xl font-bold">Roadmap de lançamento</h2>
-      <div class="mt-6 grid md:grid-cols-4 gap-6">
-        <div class="p-5 rounded-xl bg-white border border-zinc-200 shadow-soft">
-          <div class="text-xs text-zinc-500 uppercase">Concluído</div>
-          <div class="mt-1 font-semibold">v1.0 — Site e lista de espera</div>
-          <p class="mt-2 text-sm text-zinc-600">Presença oficial e base inicial de interessados.</p>
-        </div>
-        <div class="p-5 rounded-xl bg-white border border-zinc-200 shadow-soft">
-          <div class="text-xs text-zinc-500 uppercase">Em progresso</div>
-          <div class="mt-1 font-semibold">v1.1 — Protótipo navegável</div>
-          <p class="mt-2 text-sm text-zinc-600">Fluxos principais e desafios básicos.</p>
-        </div>
-        <div class="p-5 rounded-xl bg-white border border-zinc-200 shadow-soft">
-          <div class="text-xs text-zinc-500 uppercase">Próximo</div>
-          <div class="mt-1 font-semibold">v2.0 — Beta fechada</div>
-          <p class="mt-2 text-sm text-zinc-600">Trilhas, conquistas, XP e painel de progresso.</p>
-        </div>
-        <div class="p-5 rounded-xl bg-white border border-zinc-200 shadow-soft">
-          <div class="text-xs text-zinc-500 uppercase">Futuro</div>
-          <div class="mt-1 font-semibold">v3.0 — Recursos avançados</div>
-          <p class="mt-2 text-sm text-zinc-600">Integrações e melhorias — incluindo IA no momento certo.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA BETA (form real depois com Formspree) -->
+    <!-- FORMULÁRIO AJAX -->
     <section id="beta" class="relative">
       <div class="max-w-7xl mx-auto px-6 py-14">
         <div class="rounded-2xl border border-zinc-200 bg-white p-8 md:p-10 shadow-soft">
@@ -246,36 +93,76 @@
             <div class="flex-1">
               <h2 class="text-2xl md:text-3xl font-bold">Entre na beta e comece a evoluir hoje</h2>
               <p class="mt-4 text-zinc-700 text-lg">
-                Seja um dos primeiros a jogar o app que transforma aprendizado em evolução
-                financeira. Receba convites e novidades — sem spam.
+                Receba o convite e as novidades por e-mail (sem spam).
               </p>
-              <form action="https://formspree.io/f/mpwoware" method="POST"
-      class="mt-6 flex flex-col sm:flex-row gap-3" id="beta-form">
-  <input name="email" type="email" required placeholder="Seu melhor e-mail" aria-label="Seu e-mail"
-    class="flex-1 px-4 py-3 rounded-lg bg-white border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-[var(--green-500)]"/>
 
-  <!-- rastrear origem (opcional) -->
-  <input type="hidden" name="source" value="landing-v2" />
+              <!-- FORM AJAX (Nome + WhatsApp + E-mail) -->
+              <form action="https://formsubmit.co/ajax/contato@lernest.com.br" method="POST"
+                    class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3" id="beta-form">
 
-  <!-- honeypot anti-spam (opcional) -->
-  <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off"/>
+                <!-- Nome -->
+                <input name="name" type="text" placeholder="Seu nome"
+                  aria-label="Seu nome"
+                  class="px-4 py-3 rounded-lg bg-white border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-[var(--green-500)] sm:col-span-1"/>
 
-  <button type="submit"
-    class="px-5 py-3 rounded-lg text-white bg-[var(--green-700)] hover:bg-[var(--green-500)] font-medium">
-    Quero participar
-  </button>
-</form>
+                <!-- WhatsApp (validação BR) -->
+                <input name="whatsapp" type="tel" inputmode="tel" placeholder="Seu WhatsApp (DDD + número)"
+                  aria-label="Seu WhatsApp"
+                  pattern="^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$"
+                  title="Use o formato (11) 91234-5678"
+                  class="px-4 py-3 rounded-lg bg-white border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-[var(--green-500)] sm:col-span-1"/>
 
-<!-- feedback inline -->
-<p id="beta-feedback" class="mt-2 text-sm text-emerald-700 hidden">
-  Obrigada! A Lernest avisará por e-mail quando a beta abrir. 💚
-</p>
-<p id="beta-error" class="mt-2 text-sm text-red-600 hidden">
-  Ops! Não foi possível enviar agora. Tente novamente em instantes.
-</p>
+                <!-- E-mail (obrigatório) -->
+                <input name="email" type="email" required placeholder="Seu melhor e-mail"
+                  aria-label="Seu e-mail"
+                  class="px-4 py-3 rounded-lg bg-white border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-[var(--green-500)] sm:col-span-1"/>
 
+                <!-- honeypot -->
+                <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off"/>
 
+                <!-- Configurações -->
+                <input type="hidden" name="_subject" value="Nova inscrição na Beta — A Lernest 🎉">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="box">
+                <input type="hidden" name="_next" value="https://lernest.com.br/?beta=ok">
+                <input type="hidden" name="source" value="landing-v2" />
+
+                <!-- Auto-resposta -->
+                <input type="hidden" name="_autoresponse" value="Olá!
+
+Recebemos sua inscrição e você já está na lista da beta de A Lernest. 💚
+Em breve enviaremos novidades e a data do primeiro acesso.
+
+O que esperar:
+• Trilhas curtas e desafios gamificados
+• Conquistas, XP e painel de progresso
+• Conteúdo leve e direto para começar a investir com segurança
+
+Se este pedido não foi seu, ignore este e-mail.
+
+— A Lernest
+Sabedoria que rende
+contato@lernest.com.br">
+
+                <!-- Botão (linha inteira no mobile, alinhado na direita no desktop) -->
+                <div class="sm:col-span-3 flex justify-start sm:justify-end">
+                  <button type="submit"
+                    class="px-5 py-3 rounded-lg text-white bg-[var(--green-700)] hover:bg-[var(--green-500)] font-medium">
+                    Quero participar
+                  </button>
+                </div>
+              </form>
+
+              <!-- Feedback -->
+              <p id="beta-feedback" class="mt-2 text-sm text-emerald-700 hidden">
+                Obrigado! A Lernest avisará por e-mail quando a beta abrir. 💚
+              </p>
+              <p id="beta-error" class="mt-2 text-sm text-red-600 hidden">
+                Ops! Não foi possível enviar agora. Tente novamente em instantes.
+              </p>
             </div>
+
+            <!-- Painel fake (lado direito) -->
             <div class="w-full md:w-72 rounded-2xl border border-zinc-200 bg-white p-5 brand-grad text-white shadow-soft">
               <div class="text-sm opacity-90">Seu painel</div>
               <div class="mt-2 text-3xl font-extrabold">Nível 3</div>
@@ -295,11 +182,12 @@
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </div>
     </section>
-   
+
     <!-- FOOTER -->
     <footer class="border-t border-zinc-200 py-10">
       <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-zinc-600">
@@ -315,12 +203,12 @@
       </div>
     </footer>
 
-    <!-- SCRIPTS -->
+    <!-- SCRIPT -->
     <script>
       // ano no rodapé
       document.getElementById('year').textContent = new Date().getFullYear();
 
-      // envio AJAX do Formspree (não sai da página)
+      // Envio AJAX com FormSubmit
       (function () {
         const form = document.getElementById('beta-form');
         if (!form) return;
@@ -329,13 +217,31 @@
         const success = document.getElementById('beta-feedback');
         const errorMsg = document.getElementById('beta-error');
 
+        // Formatação leve do WhatsApp (remove caracteres extras antes do envio)
+        function normalizePhone(value) {
+          return value.replace(/[^\d]/g, '');
+        }
+
         form.addEventListener('submit', async (e) => {
           e.preventDefault();
           success?.classList.add('hidden');
           errorMsg?.classList.add('hidden');
 
+          // Normaliza WhatsApp para evitar erro de pattern em clientes diferentes
+          const wa = form.querySelector('input[name="whatsapp"]');
+          if (wa && wa.value) {
+            const raw = normalizePhone(wa.value);
+            // re-insere formatação amigável (opcional)
+            if (raw.length >= 10) {
+              const ddd = raw.slice(0,2);
+              const meio = raw.length === 11 ? raw.slice(2,7) : raw.slice(2,6);
+              const fim = raw.length === 11 ? raw.slice(7) : raw.slice(6);
+              wa.value = `(${ddd}) ${meio}-${fim}`;
+            }
+          }
+
           btn.disabled = true;
-          const originalLabel = btn.textContent;
+          const original = btn.textContent;
           btn.textContent = 'Enviando...';
 
           try {
@@ -352,28 +258,18 @@
             } else {
               const payload = await res.json().catch(() => ({}));
               const msg = payload?.errors?.[0]?.message || 'Erro ao enviar.';
-              if (errorMsg) {
-                errorMsg.textContent = `Ops! ${msg} Tente novamente.`;
-                errorMsg.classList.remove('hidden');
-              } else {
-                alert('Ops! Não foi possível enviar agora. Tente novamente.');
-              }
+              errorMsg.textContent = `Ops! ${msg} Tente novamente.`;
+              errorMsg.classList.remove('hidden');
             }
           } catch {
-            if (errorMsg) {
-              errorMsg.textContent = 'Falha de conexão. Verifique sua internet e tente novamente.';
-              errorMsg.classList.remove('hidden');
-            } else {
-              alert('Falha de conexão. Tente novamente.');
-            }
+            errorMsg.textContent = 'Falha de conexão. Verifique sua internet e tente novamente.';
+            errorMsg.classList.remove('hidden');
           } finally {
             btn.disabled = false;
-            btn.textContent = originalLabel;
+            btn.textContent = original;
           }
         });
       })();
     </script>
   </body>
 </html>
-
-   
