@@ -251,8 +251,7 @@
               </p>
 
               <!-- ====== FORM AJUSTADO (APENAS ESTA PARTE FOI ALTERADA) ====== -->
-              <form action="https://formsubmit.co/contato@lernest.com.br" method="POST"
-                    class="mt-6 flex flex-wrap items-center gap-3" id="beta-form">
+              <form action="https://formsubmit.co/contato@lernest.com.br">
 
                 <!-- Nome (opcional) -->
                 <input name="name" type="text" placeholder="Seu nome (opcional)" aria-label="Seu nome"
@@ -353,78 +352,119 @@ contato@lernest.com.br">
 
     <!-- SCRIPTS -->
     <script>
-      // ano no rodapé
-      document.getElementById('year').textContent = new Date().getFullYear();
+  // ano no rodapé
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-      // envio AJAX do FormSubmit (não sai da página)
-      (function () {
-        const form = document.getElementById('beta-form');
-        if (!form) return;
+  (function () {
+    const form = document.getElementById('beta-form');
+    if (!form) return;
 
-        const btn = form.querySelector('button');
-        const success = document.getElementById('beta-feedback');
-        const errorMsg = document.getElementById('beta-error');
+    const btn = form.querySelector('button');
+    const success = document.getElementById('beta-feedback');
+    const errorMsg = document.getElementById('beta-error');
 
-        // Normaliza WhatsApp (opcional – melhora consistência do dado)
-        function normalizePhone(value) {
-          return value.replace(/[^\d]/g, '');
-        }
+    // Se o action NÃO tiver "/ajax/", estamos em "modo ativação"
+    // => NÃO intercepta o submit; deixa o navegador enviar para o FormSubmit.
+    const isAjax = form.action.includes('/ajax/');
+    if (!isAjax) {
+      // Opcional: melhora UX no modo ativação
+      form.addEventListener('submit', function () {
+        if (!form.checkValidity()) return; // mantém validação nativa
+        btn.disabled = true;
+        btn.textContent = 'Enviando...';
+      });
+      return;
+    }
 
-        form.addEventListener('submit', async (e) => {
-          e.preventDefault();
-          success?.classList.add('hidden');
-          errorMsg?.classList.add('hidden');
+    // ====== Modo AJAX (depois que o e-mail já estiver confirmado) ======
+    function showError(text) {
+      if (errorMsg) {
+        errorMsg.textContent = text;
+        errorMsg.classList.remove('hidden');
+      } else {
+        alert(text);
+      }
+    }
 
-          // Normaliza e re-formata o WhatsApp para (DD) 9xxxx-xxxx
-          const wa = form.querySelector('input[name="whatsapp"]');
-          if (wa && wa.value) {
-            const raw = normalizePhone(wa.value);
-            if (raw.length >= 10) {
-              const ddd = raw.slice(0,2);
-              const meio = raw.length === 11 ? raw.slice(2,7) : raw.slice(2,6);
-              const fim = raw.length === 11 ? raw.slice(7) : raw.slice(6);
-              wa.value = `(${ddd}) ${meio}-${fim}`;
-            }
-          }
+    function normalizePhone(value) {
+      return value.replace(/[^\d]/g, '');
+    }
 
-          btn.disabled = true;
-          const originalLabel = btn.textContent;
-          btn.textContent = 'Enviando...';
-
-          try {
-            const data = new FormData(form);
-            const res = await fetch(form.action, {
-              method: 'POST',
-              headers: { 'Accept': 'application/json' },
-              body: data
-            });
-
-            if (res.ok) {
-              form.reset();
-              success?.classList.remove('hidden');
-            } else {
-              const payload = await res.json().catch(() => ({}));
-              const msg = payload?.errors?.[0]?.message || 'Erro ao enviar.';
-              if (errorMsg) {
-                errorMsg.textContent = `Ops! ${msg} Tente novamente.`;
-                errorMsg.classList.remove('hidden');
-              } else {
-                alert('Ops! Não foi possível enviar agora. Tente novamente.');
-              }
-            }
-          } catch {
-            if (errorMsg) {
-              errorMsg.textContent = 'Falha de conexão. Verifique sua internet e tente novamente.';
-              errorMsg.classList.remove('hidden');
-            } else {
-              alert('Falha de conexão. Tente novamente.');
-            }
-          } finally {
-            btn.disabled = false;
-            btn.textContent = originalLabel;
-          }
+    async function postWithTimeout(url, data, timeoutMs = 10000) {
+      const ctrl = new AbortController();
+      const id = setTimeout(() => ctrl.abort(), timeoutMs);
+      try {
+        return await fetch(url, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: data,
+          signal: ctrl.signal
         });
-      })();
-    </script>
+      } finally {
+        clearTimeout(id);
+      }
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      success?.classList.add('hidden');
+      errorMsg?.classList.add('hidden');
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      // Normaliza WhatsApp
+      const wa = form.querySelector('input[name="whatsapp"]');
+      if (wa && wa.value) {
+        const raw = normalizePhone(wa.value);
+        if (raw.length >= 10) {
+          const ddd  = raw.slice(0,2);
+          const meio = raw.length === 11 ? raw.slice(2,7) : raw.slice(2,6);
+          const fim  = raw.length === 11 ? raw.slice(7)   : raw.slice(6);
+          wa.value = `(${ddd}) ${meio}-${fim}`;
+        }
+      }
+
+      btn.disabled = true;
+      const original = btn.textContent;
+      btn.textContent = 'Enviando...';
+
+      try {
+        const data = new FormData(form);
+        const res  = await postWithTimeout(form.action, data, 10000);
+
+        if (res && res.ok) {
+          form.reset();
+          success?.classList.remove('hidden');
+        } else {
+          let payloadText = '';
+          let msg = '';
+          if (res) {
+            payloadText = await res.text().catch(() => '');
+            try {
+              const json = JSON.parse(payloadText);
+              msg = json?.errors?.[0]?.message || json?.message || '';
+            } catch {
+              msg = payloadText;
+            }
+          }
+          if ((msg || '').toLowerCase().includes('verify') || (msg || '').toLowerCase().includes('confirm')) {
+            showError('Falta ativar o FormSubmit: faça um envio com action sem /ajax/ e confirme o e-mail enviado para contato@lernest.com.br.');
+          } else {
+            showError(`Ops! ${msg || 'Erro ao enviar.'} Tente novamente.`);
+          }
+        }
+      } catch (err) {
+        showError('Falha de conexão. Verifique sua internet e tente novamente.');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = original;
+      }
+    });
+  })();
+</script>
+
   </body>
 </html>
