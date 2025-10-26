@@ -3,11 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Lernest — Sabedoria que rende</title>
-    <meta name="description" content="Lernest: educação financeira guiada por IA. Popularizamos investimentos com conteúdo leve, divertido e que realmente rende evolução." />
-    <meta property="og:title" content="Lernest — Sabedoria que rende" />
-    <meta property="og:description" content="Aprenda investimentos de forma leve e prática. Aulas curtas, trilhas, gamificação e um mascote que te guia." />
-    <meta property="og:type" content="website" />
+    <title>Lernest — Aprenda a investir jogando</title>
+    <meta name="description" content="Lernest é um app de educação financeira gamificada. Aprenda a investir com trilhas, desafios, conquistas e um guia que te motiva a evoluir de forma simples e divertida." />
     <link rel="icon" href="favicon.ico" />
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -16,206 +13,278 @@
         --green-700:#0A615E;   /* Verde tartaruga */
         --green-500:#25A675;   /* Verde claro evolutivo */
         --gold-500:#F5B800;    /* Dourado */
-        --offwhite:#F9FAF9;    /* Fundo claro */
+        --offwhite:#FAFBFA;    /* Fundo claro */
       }
-      .brand-gradient{ background: linear-gradient(90deg,var(--green-700),var(--green-500)); }
-      .gold-chip{ background: linear-gradient(180deg,#FFD86B,#F5B800); }
+      /* Texturas leves para “clima de jogo” */
+      .bg-grid {
+        background-image:
+          radial-gradient(rgba(10,97,94,0.08) 1px, transparent 1px),
+          radial-gradient(rgba(10,97,94,0.06) 1px, transparent 1px);
+        background-position: 0 0, 10px 10px;
+        background-size: 20px 20px;
+      }
+      .chip { background: linear-gradient(180deg,#FFD86B,#F5B800); }
+      .brand-grad { background: linear-gradient(90deg,var(--green-700),var(--green-500)); }
+      .shadow-soft { box-shadow: 0 10px 30px rgba(4,46,42,.06); }
     </style>
   </head>
-  <body class="bg-[var(--offwhite)] text-[var(--green-900)] selection:bg-emerald-100/80">
+  <body class="bg-[var(--offwhite)] text-[var(--green-900)]">
     <!-- NAV -->
-    <header class="w-full border-b border-zinc-200 bg-white/80 backdrop-blur">
-      <nav class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <header class="w-full bg-white/80 backdrop-blur border-b border-zinc-200">
+      <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <a class="flex items-center gap-3" href="#top" aria-label="Lernest - início">
           <img src="assets/logo-horizontal.png" alt="Lernest — Sabedoria que rende" class="h-8 w-auto"/>
         </a>
         <div class="hidden md:flex items-center gap-6 text-sm">
-          <a href="#missao" class="hover:text-[var(--green-700)]">Missão</a>
-          <a href="#recursos" class="hover:text-[var(--green-700)]">Recursos</a>
+          <a href="#como-funciona" class="hover:text-[var(--green-700)]">Como funciona</a>
+          <a href="#por-que" class="hover:text-[var(--green-700)]">Por que é diferente</a>
+          <a href="#conteudo" class="hover:text-[var(--green-700)]">O que você aprende</a>
           <a href="#mascote" class="hover:text-[var(--green-700)]">Leonardo</a>
-          <a href="#roadmap" class="hover:text-[var(--green-700)]">Roadmap</a>
-          <a href="#contato" class="hover:text-[var(--green-700)]">Contato</a>
+          <a href="#beta" class="hover:text-[var(--green-700)]">Entrar na beta</a>
         </div>
-        <a href="#espera" class="px-3 py-2 rounded-lg text-white bg-[var(--green-700)] hover:bg-[var(--green-500)] text-sm">Entrar na lista</a>
+        <a href="#beta" class="px-3 py-2 rounded-lg text-white bg-[var(--green-700)] hover:bg-[var(--green-500)] text-sm">Quero jogar</a>
       </nav>
     </header>
 
-    <!-- HERO -->
+    <!-- HERO GAMIFICADO -->
     <section id="top" class="relative">
-      <div class="max-w-6xl mx-auto px-6 pt-12 pb-6 md:pt-16">
-        <div class="grid md:grid-cols-2 gap-10 items-center">
-          <div>
-            <span class="inline-flex items-center gap-2 text-xs font-medium text-[var(--green-700)]">
-              <span class="w-2 h-2 rounded-full bg-[var(--gold-500)]"></span> Sabedoria que rende
-            </span>
-            <h1 class="mt-3 text-3xl md:text-5xl font-extrabold leading-tight text-[var(--green-900)]">
-              Educação financeira <span class="text-[var(--green-700)]">leve</span>, prática e
-              <span class="brand-gradient bg-clip-text text-transparent">guiada por IA</span>.
-            </h1>
-            <p class="mt-5 text-zinc-700 md:text-lg">
-              Nossa missão é <b>popularizar o conhecimento sobre investimentos</b> e mostrar como
-              pode ser prazeroso aprender, evoluir e <b>alavancar seu capital</b> — com método, jogo
-              e constância.
-            </p>
-
-            <!-- WAITLIST (mailto fallback – trocamos depois por Formspree) -->
-            <form id="espera" class="mt-8 flex flex-col sm:flex-row gap-3" onsubmit="return joinWaitlist(event)">
-              <input id="email" type="email" required placeholder="Seu melhor e-mail"
-                class="flex-1 px-4 py-3 rounded-lg bg-white border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-[var(--green-500)]"/>
-              <button type="submit"
-                class="px-5 py-3 rounded-lg text-white bg-[var(--green-700)] hover:bg-[var(--green-500)] font-medium">
-                Quero na Beta
-              </button>
-            </form>
-            <p class="mt-2 text-xs text-zinc-500">*Sem spam. Usaremos seu e-mail apenas para avisar sobre a beta.</p>
+      <div class="max-w-7xl mx-auto px-6 py-10 md:py-16 grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <div class="inline-flex items-center gap-2 text-xs font-medium text-[var(--green-700)]">
+            <span class="w-2 h-2 rounded-full chip"></span> Aprenda a investir jogando
           </div>
+          <h1 class="mt-3 text-3xl md:text-5xl font-extrabold leading-tight">
+            Educação financeira que dá vontade de continuar.
+          </h1>
+          <p class="mt-5 text-lg text-zinc-700">
+            A Lernest transforma conhecimento em um jogo de evolução: você avança por trilhas,
+            enfrenta desafios práticos, ganha conquistas e vê seu progresso se tornar resultado
+            no mundo real. Sem jargão, sem enrolação — só o que importa para construir
+            confiança e começar a investir com segurança.
+          </p>
+          <div class="mt-6 flex flex-wrap items-center gap-3">
+            <a href="#beta" class="px-5 py-3 rounded-lg text-white bg-[var(--green-700)] hover:bg-[var(--green-500)] font-medium">Quero entrar na beta</a>
+            <a href="#como-funciona" class="px-5 py-3 rounded-lg border border-zinc-300 bg-white hover:bg-zinc-50 font-medium">Ver como funciona</a>
+            <span class="ml-2 inline-flex items-center gap-2 text-xs text-zinc-600">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span> progresso salvo • desafios semanais
+            </span>
+          </div>
+        </div>
 
-          <div class="relative">
-            <div class="rounded-2xl border border-zinc-200 bg-white p-4 shadow-sm">
-              <div class="rounded-xl border border-zinc-200 p-4 grid gap-3">
-                <img src="assets/mascote.png" alt="Leonardo, mascote da Lernest" class="w-full h-auto rounded-xl"/>
-                <div class="text-center">
-                  <div class="text-xs uppercase tracking-widest text-zinc-500">Mascote Oficial</div>
-                  <div class="mt-1 text-base font-semibold text-[var(--green-900)]">Leonardo — seu guia de evolução</div>
-                </div>
+        <!-- Banner do Leonardo (usa hero-banner.png se existir; senão, mascote.png) -->
+        <div class="relative">
+          <div class="rounded-2xl border border-zinc-200 bg-white p-4 shadow-soft bg-grid">
+            <picture>
+              <source srcset="assets/hero-banner.png" />
+              <img src="assets/mascote.png" alt="Leonardo em cena — seu guia de evolução" class="w-full h-auto rounded-xl"/>
+            </picture>
+            <div class="mt-4 grid grid-cols-3 gap-3 text-center">
+              <div class="rounded-xl border border-emerald-100 bg-emerald-50 py-3">
+                <div class="text-xs text-emerald-700">XP total</div>
+                <div class="text-lg font-semibold text-[var(--green-900)]">1.250</div>
+              </div>
+              <div class="rounded-xl border border-amber-100 bg-amber-50 py-3">
+                <div class="text-xs text-amber-700">Streak</div>
+                <div class="text-lg font-semibold text-[var(--green-900)]">7 dias</div>
+              </div>
+              <div class="rounded-xl border border-indigo-100 bg-indigo-50 py-3">
+                <div class="text-xs text-indigo-700">Quests</div>
+                <div class="text-lg font-semibold text-[var(--green-900)]">3/5</div>
               </div>
             </div>
-            <div class="absolute -bottom-5 -right-3 text-[var(--green-700)] text-xs px-3 py-1 rounded-full bg-emerald-50 border border-emerald-100">
-              v1.2 — Identidade atualizada
-            </div>
+          </div>
+          <div class="absolute -bottom-5 -right-3 text-[var(--green-700)] text-xs px-3 py-1 rounded-full bg-emerald-50 border border-emerald-100">
+            v2.0 — Landing gamificada
           </div>
         </div>
       </div>
     </section>
 
-    <!-- MISSÃO / PROPÓSITO -->
-    <section id="missao" class="max-w-6xl mx-auto px-6 py-12">
+    <!-- COMO FUNCIONA (explicativo, sem IA) -->
+    <section id="como-funciona" class="max-w-7xl mx-auto px-6 py-14">
+      <div class="max-w-3xl">
+        <h2 class="text-2xl md:text-3xl font-bold">Como a Lernest te leva do zero à confiança</h2>
+        <p class="mt-4 text-zinc-700 text-lg">
+          A base do app é simples: você segue <b>trilhas</b> com aulas curtas e desafios práticos.
+          Cada passo foi desenhado para gerar entendimento real — não memorização — e para
+          te colocar em movimento com um plano claro. Enquanto avança, você desbloqueia
+          <b>conquistas</b>, soma <b>XP</b> e acompanha sua <b>evolução</b> em um painel que mostra
+          aquilo que realmente importa: hábitos, metas e consistência.
+        </p>
+      </div>
+      <div class="mt-8 grid md:grid-cols-3 gap-6">
+        <div class="p-6 rounded-xl bg-white border border-zinc-200 shadow-soft">
+          <div class="text-sm text-zinc-500">Passo 1</div>
+          <h3 class="mt-1 font-semibold">Aprenda o essencial</h3>
+          <p class="mt-2 text-zinc-700 text-sm">Aulas curtas, linguagem direta e exemplos práticos. Nada de jargão desnecessário.</p>
+        </div>
+        <div class="p-6 rounded-xl bg-white border border-zinc-200 shadow-soft">
+          <div class="text-sm text-zinc-500">Passo 2</div>
+          <h3 class="mt-1 font-semibold">Pratique com desafios</h3>
+          <p class="mt-2 text-zinc-700 text-sm">Quests semanais, simulador simples e metas claras para ganhar confiança.</p>
+        </div>
+        <div class="p-6 rounded-xl bg-white border border-zinc-200 shadow-soft">
+          <div class="text-sm text-zinc-500">Passo 3</div>
+          <h3 class="mt-1 font-semibold">Veja seu progresso</h3>
+          <p class="mt-2 text-zinc-700 text-sm">Acompanhe XP, streaks e conquistas. Sua constância vira evolução de verdade.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- POR QUE É DIFERENTE (comparativo curto + narrativa) -->
+    <section id="por-que" class="max-w-7xl mx-auto px-6 py-14">
       <div class="grid md:grid-cols-2 gap-10 items-start">
         <div>
-          <h2 class="text-2xl md:text-3xl font-bold text-[var(--green-900)]">Nossa missão</h2>
-          <p class="mt-4 text-zinc-700">
-            <b>Popularizar investimentos</b> com uma experiência divertida, motivadora e segura.
-            A Lernest combina conteúdo claro, <b>gamificação</b> e acompanhamento por IA para que
-            você avance com constância — como quem <b>joga e evolui</b>.
+          <h2 class="text-2xl md:text-3xl font-bold">Por que o Lernest é diferente</h2>
+          <p class="mt-4 text-zinc-700 text-lg">
+            A maioria dos cursos é longa, teórica e desmotivadora. A Lernest faz o oposto:
+            <b>conteúdo leve</b>, <b>prática guiada</b> e sensação constante de avanço. Você não
+            precisa estudar por horas para sentir evolução — precisa de uma experiência bem
+            desenhada, que respeite seu tempo e coloque você no controle.
           </p>
-          <ul class="mt-6 grid gap-3">
-            <li class="flex items-start gap-3">
-              <span class="mt-1 w-2 h-2 rounded-full gold-chip"></span>
-              <p><b>Sabedoria acessível:</b> aulas curtas, linguagem simples e exemplos práticos.</p>
-            </li>
-            <li class="flex items-start gap-3">
-              <span class="mt-1 w-2 h-2 rounded-full gold-chip"></span>
-              <p><b>Autoridade com diversão:</b> aprendizados sérios, com leveza e motivação.</p>
-            </li>
-            <li class="flex items-start gap-3">
-              <span class="mt-1 w-2 h-2 rounded-full gold-chip"></span>
-              <p><b>Evolução que rende:</b> metas, trilhas e relatórios para ver seu progresso.</p>
-            </li>
-          </ul>
-        </div>
-        <div class="rounded-2xl border border-zinc-200 p-6 bg-white">
-          <img src="assets/logo-vertical.png" alt="Logotipo vertical da Lernest" class="w-full h-auto"/>
-          <div class="mt-4 text-sm text-zinc-600">
-            Versão vertical — uso recomendado em redes sociais e materiais institucionais.
+          <div class="mt-6 p-4 rounded-xl bg-white border border-zinc-200 shadow-soft">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="text-left text-zinc-500">
+                  <th class="py-2"> </th>
+                  <th class="py-2">Cursos tradicionais</th>
+                  <th class="py-2">Lernest</th>
+                </tr>
+              </thead>
+              <tbody class="align-top">
+                <tr>
+                  <td class="py-2 font-medium">Formato</td>
+                  <td class="py-2 text-zinc-600">Aulas longas</td>
+                  <td class="py-2 text-zinc-900">Aulas curtas e diretas</td>
+                </tr>
+                <tr>
+                  <td class="py-2 font-medium">Prática</td>
+                  <td class="py-2 text-zinc-600">Teoria sem aplicação</td>
+                  <td class="py-2 text-zinc-900">Desafios e simulador simples</td>
+                </tr>
+                <tr>
+                  <td class="py-2 font-medium">Motivação</td>
+                  <td class="py-2 text-zinc-600">Difícil manter foco</td>
+                  <td class="py-2 text-zinc-900">Conquistas, XP e streaks</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- RECURSOS -->
-    <section id="recursos" class="max-w-6xl mx-auto px-6 py-12">
-      <h2 class="text-2xl md:text-3xl font-bold text-[var(--green-900)]">Como a Lernest te ajuda</h2>
-      <div class="mt-8 grid md:grid-cols-3 gap-6">
-        <div class="p-5 rounded-xl bg-white border border-zinc-200">
-          <div class="text-xs text-zinc-500 uppercase">Módulo 1</div>
-          <div class="mt-1 font-semibold text-[var(--green-900)]">Fundamentos que rendem</div>
-          <p class="mt-2 text-sm text-zinc-600">Aulas curtas e diretas: conceito, exemplo e exercício.</p>
-        </div>
-        <div class="p-5 rounded-xl bg-white border border-zinc-200">
-          <div class="text-xs text-zinc-500 uppercase">Módulo 2</div>
-          <div class="mt-1 font-semibold text-[var(--green-900)]">Metas & hábitos</div>
-          <p class="mt-2 text-sm text-zinc-600">Trilhas com metas mensais e reforço de disciplina.</p>
-        </div>
-        <div class="p-5 rounded-xl bg-white border border-zinc-200">
-          <div class="text-xs text-zinc-500 uppercase">Módulo 3</div>
-          <div class="mt-1 font-semibold text-[var(--green-900)]">IA que acompanha</div>
-          <p class="mt-2 text-sm text-zinc-600">Dúvidas, rotas de estudo e lembretes inteligentes.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- MASCOTE -->
-    <section id="mascote" class="max-w-6xl mx-auto px-6 py-12">
-      <div class="grid md:grid-cols-2 gap-10 items-center">
-        <div class="order-2 md:order-1">
-          <h2 class="text-2xl md:text-3xl font-bold text-[var(--green-900)]">Leonardo, seu guia</h2>
-          <p class="mt-4 text-zinc-700">
-            O Leonardo é a tradução da nossa personalidade: <b>convidativo, confiável e divertido</b>.
-            Ele celebra cada avanço e mantém você motivado a continuar jogando o jogo do crescimento.
+        <!-- Conteúdo que você aprende (mais explicativo) -->
+        <div id="conteudo" class="rounded-2xl border border-zinc-200 bg-white p-6 shadow-soft">
+          <h3 class="text-lg font-semibold">O que você vai aprender</h3>
+          <p class="mt-2 text-zinc-700">
+            Você começa construindo uma base sólida: orçamento inteligente, metas claras e
+            mentalidade de longo prazo. Depois, avança para os principais veículos de
+            investimento e aprende a montar uma carteira coerente com seu perfil e objetivos.
           </p>
-          <ul class="mt-6 grid gap-2 text-sm text-zinc-700">
-            <li>• Dicas rápidas e lembretes inteligentes</li>
-            <li>• Onboarding e acompanhamento das trilhas</li>
-            <li>• Presença em campanhas e materiais didáticos</li>
+          <ul class="mt-4 grid gap-2 text-sm text-zinc-700">
+            <li>• Planejamento e hábitos financeiros</li>
+            <li>• Fundamentos: renda fixa, fundos e ações</li>
+            <li>• Diversificação e metas de aporte</li>
+            <li>• Controle emocional e consistência</li>
           </ul>
         </div>
-        <div class="order-1 md:order-2 rounded-2xl border border-zinc-200 bg-white p-6">
+      </div>
+    </section>
+
+    <!-- MASCOTE: LEONARDO COMO MENTOR -->
+    <section id="mascote" class="max-w-7xl mx-auto px-6 py-14">
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div class="order-2 md:order-1">
+          <h2 class="text-2xl md:text-3xl font-bold">Leonardo, seu guia nessa jornada</h2>
+          <p class="mt-4 text-zinc-700 text-lg">
+            O Leonardo representa o jeito Lernest de ensinar: calmo, acolhedor e sempre
+            motivador. Ele aparece nas telas certas, com mensagens curtas que te ajudam a
+            manter a disciplina, celebrar cada conquista e seguir consistente — no seu ritmo.
+          </p>
+          <p class="mt-4 text-zinc-700">
+            Não é sobre decorar termos: é sobre entender o suficiente para agir com confiança
+            e transformar pequenas decisões em progresso real.
+          </p>
+        </div>
+        <div class="order-1 md:order-2 rounded-2xl border border-zinc-200 bg-white p-6 shadow-soft">
           <img src="assets/mascote.png" alt="Mascote Leonardo" class="w-full h-auto rounded-xl"/>
         </div>
       </div>
     </section>
 
-    <!-- ROADMAP -->
-    <section id="roadmap" class="max-w-6xl mx-auto px-6 py-12">
-      <h2 class="text-2xl md:text-3xl font-bold text-[var(--green-900)]">Roadmap</h2>
-      <ol class="mt-6 grid gap-4">
-        <li class="p-4 rounded-xl bg-white border border-zinc-200">
-          <span class="font-semibold text-[var(--green-900)]">v1.0 — Landing + Lista de Espera</span>
-          <p class="text-sm text-zinc-600 mt-1">Presença oficial e captação de interessados.</p>
-        </li>
-        <li class="p-4 rounded-xl bg-white border border-zinc-200">
-          <span class="font-semibold text-[var(--green-900)]">v1.1 — Protótipo navegável</span>
-          <p class="text-sm text-zinc-600 mt-1">Fluxos simulados (sem backend) para validação.</p>
-        </li>
-        <li class="p-4 rounded-xl bg-white border border-zinc-200">
-          <span class="font-semibold text-[var(--green-900)]">v2.0 — Beta fechada</span>
-          <p class="text-sm text-zinc-600 mt-1">Conta, trilhas, metas e IA básica.</p>
-        </li>
-      </ol>
-    </section>
-
-    <!-- LOGO SHOWCASE -->
-    <section class="max-w-6xl mx-auto px-6 py-12">
-      <div class="grid md:grid-cols-2 gap-10">
-        <div class="rounded-2xl border border-zinc-200 p-6 bg-white">
-          <img src="assets/logo-horizontal.png" alt="Logotipo horizontal da Lernest" class="w-full h-auto"/>
-          <div class="mt-3 text-sm text-zinc-600">Versão horizontal — uso em cabeçalhos e site.</div>
+    <!-- ROADMAP (IA só no futuro) -->
+    <section id="roadmap" class="max-w-7xl mx-auto px-6 py-14">
+      <h2 class="text-2xl md:text-3xl font-bold">Roadmap de lançamento</h2>
+      <div class="mt-6 grid md:grid-cols-4 gap-6">
+        <div class="p-5 rounded-xl bg-white border border-zinc-200 shadow-soft">
+          <div class="text-xs text-zinc-500 uppercase">Concluído</div>
+          <div class="mt-1 font-semibold">v1.0 — Site e lista de espera</div>
+          <p class="mt-2 text-sm text-zinc-600">Presença oficial e base inicial de interessados.</p>
         </div>
-        <div class="rounded-2xl border border-zinc-200 p-6 bg-white">
-          <img src="assets/logo-vertical.png" alt="Logotipo vertical da Lernest" class="w-full h-auto"/>
-          <div class="mt-3 text-sm text-zinc-600">Versão vertical — uso em redes e institucionais.</div>
+        <div class="p-5 rounded-xl bg-white border border-zinc-200 shadow-soft">
+          <div class="text-xs text-zinc-500 uppercase">Em progresso</div>
+          <div class="mt-1 font-semibold">v1.1 — Protótipo navegável</div>
+          <p class="mt-2 text-sm text-zinc-600">Fluxos principais e desafios básicos.</p>
+        </div>
+        <div class="p-5 rounded-xl bg-white border border-zinc-200 shadow-soft">
+          <div class="text-xs text-zinc-500 uppercase">Próximo</div>
+          <div class="mt-1 font-semibold">v2.0 — Beta fechada</div>
+          <p class="mt-2 text-sm text-zinc-600">Trilhas, conquistas, XP e painel de progresso.</p>
+        </div>
+        <div class="p-5 rounded-xl bg-white border border-zinc-200 shadow-soft">
+          <div class="text-xs text-zinc-500 uppercase">Futuro</div>
+          <div class="mt-1 font-semibold">v3.0 — Recursos avançados</div>
+          <p class="mt-2 text-sm text-zinc-600">Integrações e melhorias — incluindo IA no momento certo.</p>
         </div>
       </div>
     </section>
 
-    <!-- CONTATO -->
-    <section id="contato" class="max-w-6xl mx-auto px-6 py-12">
-      <div class="rounded-2xl border border-zinc-200 p-6 bg-white flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-        <div>
-          <h3 class="text-xl font-bold text-[var(--green-900)]">Fale com a gente</h3>
-          <p class="mt-1 text-sm text-zinc-600">
-            Dúvidas, parcerias ou imprensa: <a href="mailto:contato@lernest.com.br" class="underline text-[var(--green-700)]">contato@lernest.com.br</a>
-          </p>
+    <!-- CTA BETA (form real depois com Formspree) -->
+    <section id="beta" class="relative">
+      <div class="max-w-7xl mx-auto px-6 py-14">
+        <div class="rounded-2xl border border-zinc-200 bg-white p-8 md:p-10 shadow-soft">
+          <div class="flex flex-col md:flex-row items-center gap-8">
+            <div class="flex-1">
+              <h2 class="text-2xl md:text-3xl font-bold">Entre na beta e comece a evoluir hoje</h2>
+              <p class="mt-4 text-zinc-700 text-lg">
+                Seja um dos primeiros a jogar o app que transforma aprendizado em evolução
+                financeira. Receba convites e novidades — sem spam.
+              </p>
+              <form class="mt-6 flex flex-col sm:flex-row gap-3" onsubmit="return joinWaitlist(event)">
+                <input id="email" type="email" required placeholder="Seu melhor e-mail"
+                  class="flex-1 px-4 py-3 rounded-lg bg-white border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-[var(--green-500)]"/>
+                <button type="submit" class="px-5 py-3 rounded-lg text-white bg-[var(--green-700)] hover:bg-[var(--green-500)] font-medium">
+                  Quero participar
+                </button>
+              </form>
+              <p class="mt-2 text-xs text-zinc-500">Depois trocamos para Formspree. E-mail apenas para avisos da beta.</p>
+            </div>
+            <div class="w-full md:w-72 rounded-2xl border border-zinc-200 bg-white p-5 brand-grad text-white shadow-soft">
+              <div class="text-sm opacity-90">Seu painel</div>
+              <div class="mt-2 text-3xl font-extrabold">Nível 3</div>
+              <div class="mt-2 text-sm">“Disciplina de Aportes”</div>
+              <div class="mt-4 h-2 w-full bg-white/20 rounded">
+                <div class="h-2 bg-white rounded" style="width: 65%"></div>
+              </div>
+              <div class="mt-4 grid grid-cols-3 gap-3 text-center">
+                <div class="rounded-lg bg-white/15 py-2">
+                  <div class="text-xs opacity-90">XP</div><div class="font-semibold">1.250</div>
+                </div>
+                <div class="rounded-lg bg-white/15 py-2">
+                  <div class="text-xs opacity-90">Streak</div><div class="font-semibold">7d</div>
+                </div>
+                <div class="rounded-lg bg-white/15 py-2">
+                  <div class="text-xs opacity-90">Quests</div><div class="font-semibold">3/5</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <a href="#espera" class="px-4 py-2 rounded-lg text-white bg-[var(--green-700)] hover:bg-[var(--green-500)] text-sm">
-          Entrar na lista da Beta
-        </a>
       </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="border-t border-zinc-200 py-8">
-      <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-zinc-600">
+    <footer class="border-t border-zinc-200 py-10">
+      <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-zinc-600">
         <div class="flex items-center gap-3">
           <img src="assets/logo-horizontal.png" alt="Lernest" class="h-5 w-auto"/>
           <span>© <span id="year"></span> Lernest. Todos os direitos reservados.</span>
@@ -223,22 +292,9 @@
         <div class="flex items-center gap-4">
           <a href="#" class="hover:text-[var(--green-700)]">Termos</a>
           <a href="#" class="hover:text-[var(--green-700)]">Privacidade</a>
+          <a href="mailto:contato@lernest.com.br" class="hover:text-[var(--green-700)]">Contato</a>
         </div>
       </div>
     </footer>
 
     <script>
-      document.getElementById("year").textContent = new Date().getFullYear();
-      function joinWaitlist(e){
-        e.preventDefault();
-        const email = document.getElementById("email").value.trim();
-        if(!email) return false;
-        const subject = encodeURIComponent("Quero entrar na beta do Lernest");
-        const body = encodeURIComponent(`Olá, quero participar da beta. Meu e-mail é: ${email}`);
-        window.location.href = `mailto:contato@lernest.com.br?subject=${subject}&body=${body}`;
-        setTimeout(()=>alert("Abrimos seu e-mail padrão para enviar a solicitação. Se preferir, escreva para contato@lernest.com.br"), 600);
-        return false;
-      }
-    </script>
-  </body>
-</html>
