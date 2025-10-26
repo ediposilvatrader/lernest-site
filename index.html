@@ -249,22 +249,31 @@
                 Seja um dos primeiros a jogar o app que transforma aprendizado em evolução
                 financeira. Receba convites e novidades — sem spam.
               </p>
-              <form action="https://formspree.io/f/mpwoware" method="POST" class="mt-6 flex flex-col sm:flex-row gap-3" id="beta-form">
+              <form action="https://formspree.io/f/mpwoware" method="POST"
+      class="mt-6 flex flex-col sm:flex-row gap-3" id="beta-form">
   <input name="email" type="email" required placeholder="Seu melhor e-mail" aria-label="Seu e-mail"
     class="flex-1 px-4 py-3 rounded-lg bg-white border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-[var(--green-500)]"/>
-  <!-- opcional: rastrear origem -->
+
+  <!-- rastrear origem (opcional) -->
   <input type="hidden" name="source" value="landing-v2" />
-  <!-- opcional: redirecionar para uma página de obrigado -->
-  <!-- <input type="hidden" name="_redirect" value="https://SEU-DOMINIO/obrigado.html" /> -->
-  <button type="submit" class="px-5 py-3 rounded-lg text-white bg-[var(--green-700)] hover:bg-[var(--green-500)] font-medium">
+
+  <!-- honeypot anti-spam (opcional) -->
+  <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off"/>
+
+  <button type="submit"
+    class="px-5 py-3 rounded-lg text-white bg-[var(--green-700)] hover:bg-[var(--green-500)] font-medium">
     Quero participar
   </button>
 </form>
-<script>
-  document.getElementById('beta-form')?.addEventListener('submit', function(){
-    setTimeout(()=>alert('Obrigada por se inscrever! A Lernest avisará por e-mail quando a beta abrir.'), 200);
-  });
-</script>
+
+<!-- feedback inline -->
+<p id="beta-feedback" class="mt-2 text-sm text-emerald-700 hidden">
+  Obrigada! A Lernest avisará por e-mail quando a beta abrir. 💚
+</p>
+<p id="beta-error" class="mt-2 text-sm text-red-600 hidden">
+  Ops! Não foi possível enviar agora. Tente novamente em instantes.
+</p>
+
 
               <p class="mt-2 text-xs text-zinc-500">Depois trocamos para Formspree. E-mail apenas para avisos da beta.</p>
             </div>
@@ -291,7 +300,7 @@
         </div>
       </div>
     </section>
-
+   
     <!-- FOOTER -->
     <footer class="border-t border-zinc-200 py-10">
       <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-zinc-600">
@@ -307,4 +316,65 @@
       </div>
     </footer>
 
+    <!-- SCRIPTS -->
     <script>
+      // ano no rodapé
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // envio AJAX do Formspree (não sai da página)
+      (function () {
+        const form = document.getElementById('beta-form');
+        if (!form) return;
+
+        const btn = form.querySelector('button');
+        const success = document.getElementById('beta-feedback');
+        const errorMsg = document.getElementById('beta-error');
+
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          success?.classList.add('hidden');
+          errorMsg?.classList.add('hidden');
+
+          btn.disabled = true;
+          const originalLabel = btn.textContent;
+          btn.textContent = 'Enviando...';
+
+          try {
+            const data = new FormData(form);
+            const res = await fetch(form.action, {
+              method: 'POST',
+              headers: { 'Accept': 'application/json' },
+              body: data
+            });
+
+            if (res.ok) {
+              form.reset();
+              success?.classList.remove('hidden');
+            } else {
+              const payload = await res.json().catch(() => ({}));
+              const msg = payload?.errors?.[0]?.message || 'Erro ao enviar.';
+              if (errorMsg) {
+                errorMsg.textContent = `Ops! ${msg} Tente novamente.`;
+                errorMsg.classList.remove('hidden');
+              } else {
+                alert('Ops! Não foi possível enviar agora. Tente novamente.');
+              }
+            }
+          } catch {
+            if (errorMsg) {
+              errorMsg.textContent = 'Falha de conexão. Verifique sua internet e tente novamente.';
+              errorMsg.classList.remove('hidden');
+            } else {
+              alert('Falha de conexão. Tente novamente.');
+            }
+          } finally {
+            btn.disabled = false;
+            btn.textContent = originalLabel;
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
+
+   
