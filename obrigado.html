@@ -72,10 +72,7 @@
          h-40 sm:h-44 md:h-52 lg:h-60 xl:h-64 w-auto" />
 
       <h1 class="text-3xl font-extrabold text-[var(--green-700)]">Inscrição recebida! 💚</h1>
-      <p class="mt-3 text-zinc-700 text-lg">
-        Valeu por entrar na lista da <b>beta da Lernest</b>.<br/>
-        Assim que abrirmos os convites, você receberá um e-mail com as instruções para acesso.
-      </p>
+      <p id="greet" class="mt-2 text-lg font-semibold text-[var(--green-700)] hidden"></p>
 
       <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
         <a href="./index.html#como-funciona"
@@ -143,5 +140,19 @@
       setTimeout(()=>container.remove(), DURATION+1200);
     })();
     </script>
+    <script>
+(function () {
+  try {
+    const el = document.getElementById('greet');
+    const raw = localStorage.getItem('lernest_name') || '';
+    const name = raw.replace(/[^\p{L}\p{M}\s'.-]/gu, '').trim(); // sanitiza
+    if (name) {
+      el.textContent = `Valeu, ${name}!`;
+      el.classList.remove('hidden');
+    }
+    localStorage.removeItem('lernest_name'); // limpa para não “vazar”
+  } catch {}
+})();
+</script>
   </body>
 </html>
