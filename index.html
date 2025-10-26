@@ -249,112 +249,181 @@
                 Seja um dos primeiros a jogar o app que transforma aprendizado em evolução
                 financeira. Receba convites e novidades — sem spam.
               </p>
-            <!-- FORM BETA -->
-<form id="beta-form"
-  action="https://api.web3forms.com/submit"
-  method="POST"
-  class="mt-6 flex flex-col sm:flex-row gap-3">
 
-  <!-- Web3Forms Access Key -->
-  <input type="hidden" name="access_key" value="c3222024-092c-4392-9af1-b9adcc6458f6" />
-  <input type="hidden" name="source" value="landing-v2" />
+              <!-- FORM BETA -->
+              <form id="beta-form"
+                    action="https://api.web3forms.com/submit"
+                    method="POST"
+                    class="mt-6 flex flex-col sm:flex-row gap-3">
 
-  <!-- Redirecionamento (mantido, mas o redirect é feito via JS) -->
-  <input type="hidden" name="redirect" value="https://ediposilvatrader.github.io/lernest-site/obrigado.html" />
+                <!-- Web3Forms Access Key -->
+                <input type="hidden" name="access_key" value="c3222024-092c-4392-9af1-b9adcc6458f6" />
+                <input type="hidden" name="source" value="landing-v2" />
 
-  <!-- Nome -->
-  <input
-    name="name"
-    type="text"
-    required
-    placeholder="Seu nome"
-    aria-label="Seu nome"
-    class="flex-1 px-4 py-3 rounded-lg bg-white border border-zinc-300
-           focus:outline-none focus:ring-2 focus:ring-[var(--green-500)]" />
+                <!-- Nome -->
+                <input
+                  name="name"
+                  type="text"
+                  required
+                  placeholder="Seu nome"
+                  aria-label="Seu nome"
+                  class="flex-1 px-4 py-3 rounded-lg bg-white border border-zinc-300
+                        focus:outline-none focus:ring-2 focus:ring-[var(--green-500)]" />
 
-  <!-- E-mail -->
-  <input
-    name="email"
-    type="email"
-    required
-    placeholder="Seu melhor e-mail"
-    aria-label="Seu e-mail"
-    class="flex-1 px-4 py-3 rounded-lg bg-white border border-zinc-300
-           focus:outline-none focus:ring-2 focus:ring-[var(--green-500)]" />
+                <!-- E-mail -->
+                <input
+                  name="email"
+                  type="email"
+                  required
+                  placeholder="Seu melhor e-mail"
+                  aria-label="Seu e-mail"
+                  class="flex-1 px-4 py-3 rounded-lg bg-white border border-zinc-300
+                        focus:outline-none focus:ring-2 focus:ring-[var(--green-500)]" />
 
-  <!-- Botão -->
-  <button type="submit"
-    class="px-5 py-3 rounded-lg text-white bg-[var(--green-700)]
-           hover:bg-[var(--green-500)] font-medium btn-pulse">
-    Quero participar
-  </button>
-</form>
+                <!-- Botão -->
+                <button type="submit"
+                  class="px-5 py-3 rounded-lg text-white bg-[var(--green-700)]
+                        hover:bg-[var(--green-500)] font-medium btn-pulse">
+                  Quero participar
+                </button>
+              </form>
 
-<!-- Feedback -->
-<p id="beta-feedback" class="mt-2 text-sm text-emerald-700 hidden">
-  Obrigado! A Lernest avisará por e-mail quando a beta abrir. 💚
-</p>
-<p id="beta-error" class="mt-2 text-sm text-red-600 hidden">
-  Ops! Não foi possível enviar agora. Tente novamente em instantes.
-</p>
+              <!-- Feedback -->
+              <p id="beta-feedback" class="mt-2 text-sm text-emerald-700 hidden">
+                Obrigado! A Lernest avisará por e-mail quando a beta abrir. 💚
+              </p>
+              <p id="beta-error" class="mt-2 text-sm text-red-600 hidden">
+                Ops! Não foi possível enviar agora. Tente novamente em instantes.
+              </p>
+            </div>
 
-<!-- SCRIPT AJAX -->
-<script>
-(function() {
-  const form = document.getElementById('beta-form');
-  if (!form) return;
+            <div class="w-full md:w-72 rounded-2xl border border-zinc-200 bg-white p-5 brand-grad text-white shadow-soft">
+              <div class="text-sm opacity-90">Seu painel</div>
+              <div class="mt-2 text-3xl font-extrabold">Nível 3</div>
+              <div class="mt-2 text-sm">“Disciplina de Aportes”</div>
+              <div class="mt-4 h-2 w-full bg-white/20 rounded">
+                <div class="h-2 bg-white rounded" style="width: 65%"></div>
+              </div>
+              <div class="mt-4 grid grid-cols-3 gap-3 text-center">
+                <div class="rounded-lg bg-white/15 py-2">
+                  <div class="text-xs opacity-90">XP</div><div class="font-semibold">1.250</div>
+                </div>
+                <div class="rounded-lg bg-white/15 py-2">
+                  <div class="text-xs opacity-90">Ofensiva</div><div class="font-semibold">7d</div>
+                </div>
+                <div class="rounded-lg bg-white/15 py-2">
+                  <div class="text-xs opacity-90">Desafios</div><div class="font-semibold">3/5</div>
+                </div>
+              </div>
+            </div>
 
-  const btn = form.querySelector('button');
-  const success = document.getElementById('beta-feedback');
-  const errorMsg = document.getElementById('beta-error');
-  const OBRIGADO_URL = 'https://ediposilvatrader.github.io/lernest-site/obrigado.html';
+          </div>
+        </div>
+      </div>
+    </section>
+   
+    <!-- FOOTER -->
+    <footer class="border-t border-zinc-200 py-10">
+      <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-zinc-600">
+        <div class="flex items-center gap-3">
+          <img src="assets/logo-horizontal.png" alt="Lernest" class="h-5 w-auto"/>
+          <span>© <span id="year"></span> Lernest. Todos os direitos reservados.</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <a href="#" class="hover:text-[var(--green-700)]">Termos</a>
+          <a href="#" class="hover:text-[var(--green-700)]">Privacidade</a>
+          <a href="mailto:contato@lernest.com.br" class="hover:text-[var(--green-700)]">Contato</a>
+        </div>
+      </div>
+    </footer>
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    success?.classList.add('hidden');
-    errorMsg?.classList.add('hidden');
+    <!-- SCRIPTS -->
+    <script>
+      // ano no rodapé
+      document.getElementById('year').textContent = new Date().getFullYear();
 
-    btn.disabled = true;
-    const originalLabel = btn.textContent;
-    btn.textContent = 'Enviando...';
+      // envio AJAX (Web3Forms) com name + email, salva nome e redireciona via JS
+      (function () {
+        const form = document.getElementById('beta-form');
+        if (!form) return;
 
-    try {
-      const data = new FormData(form);
+        const btn = form.querySelector('button');
+        const success = document.getElementById('beta-feedback');
+        const errorMsg = document.getElementById('beta-error');
 
-      // Nome e e-mail
-      const nome  = String(data.get('name') || '').trim();
-      const email = String(data.get('email') || '').trim();
+        const OBRIGADO_URL = 'https://ediposilvatrader.github.io/lernest-site/obrigado.html';
 
-      // 👉 salva o nome para a página de obrigado
-      const safeName = nome.slice(0, 50);
-      try { localStorage.setItem('lernest_name', safeName); } catch {}
+        function showError(text) {
+          if (errorMsg) { errorMsg.textContent = text; errorMsg.classList.remove('hidden'); }
+          else { alert(text); }
+        }
 
-      // Mensagem consolidada no e-mail que você recebe
-      const mensagem = `Nova inscrição na beta da Lernest:\n\nNome: ${nome}\nE-mail: ${email}`;
-      data.append('message', mensagem);
+        async function postWithTimeout(url, data, timeoutMs = 12000) {
+          const ctrl = new AbortController();
+          const id = setTimeout(() => ctrl.abort(), timeoutMs);
+          try {
+            return await fetch(url, {
+              method: 'POST',
+              headers: { 'Accept': 'application/json' }, // importante para evitar redirect
+              body: data,
+              signal: ctrl.signal
+            });
+          } finally { clearTimeout(id); }
+        }
 
-      const res = await fetch(form.action, { method: 'POST', body: data });
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          success?.classList.add('hidden');
+          errorMsg?.classList.add('hidden');
 
-      if (res.ok) {
-        form.reset();
-        success?.classList.remove('hidden');
-        // redireciona para a página de obrigado
-        setTimeout(() => { window.location.href = OBRIGADO_URL; }, 600);
-      } else {
-        errorMsg.textContent = 'Ops! O servidor não respondeu corretamente. Tente novamente.';
-        errorMsg.classList.remove('hidden');
-      }
-    } catch (err) {
-      // Falha de rede: ainda assim pode ter enviado; opcionalmente redirecione
-      errorMsg.textContent = 'Falha de conexão. Verifique sua internet e tente novamente.';
-      errorMsg.classList.remove('hidden');
-    } finally {
-      btn.disabled = false;
-      btn.textContent = originalLabel;
-    }
-  });
-})();
-</script>
+          btn.disabled = true;
+          const originalLabel = btn.textContent;
+          btn.textContent = 'Enviando...';
 
+          try {
+            const data = new FormData(form);
+
+            // Nome e e-mail
+            const nome  = String(data.get('name') || '').trim();
+            const email = String(data.get('email') || '').trim();
+
+            // Salva nome para a página de obrigado
+            try { localStorage.setItem('lernest_name', nome.slice(0,50)); } catch {}
+
+            // Mensagem consolidada no e-mail que você recebe
+            const mensagem = `Nova inscrição na beta da Lernest:\n\nNome: ${nome}\nE-mail: ${email}`;
+            data.append('message', mensagem);
+
+            const res = await postWithTimeout(form.action, data, 12000);
+
+            // Trata sucesso normal e sucesso com redirect opaco
+            const looksLikeSuccess = res && (res.ok || res.type === 'opaqueredirect' || res.redirected);
+
+            if (looksLikeSuccess) {
+              window.location.href = OBRIGADO_URL;
+              return;
+            }
+
+            // Se não foi sucesso, tenta extrair mensagem
+            let msg = 'Erro ao enviar.';
+            try {
+              const json = await res.json();
+              msg = json?.message || json?.error || msg;
+            } catch {}
+            showError(`Ops! ${msg} Tente novamente.`);
+          } catch {
+            // Pode ter sido sucesso mas bloqueado por CORS; redireciona mesmo assim (fail-open)
+            window.location.href = OBRIGADO_URL;
+            return;
+          } finally {
+            // Reabilita botão se ainda estiver na página
+            setTimeout(() => {
+              btn.disabled = false;
+              btn.textContent = originalLabel;
+            }, 200);
+          }
+        });
+      })();
+    </script>
   </body>
 </html>
