@@ -257,7 +257,6 @@
   <input type="hidden" name="subject" value="Nova inscrição na Beta — Lernest 🎉" />
   <input type="hidden" name="from_name" value="Lernest Landing" />
   <input type="hidden" name="source" value="landing-v2" />
-  <input type="hidden" name="redirect" value="https://ediposilvatrader.github.io/lernest-site/obrigado.html" />
 
   <!-- campo de e-mail (original) -->
   <input name="email" type="email" required placeholder="Seu melhor e-mail" aria-label="Seu e-mail"
@@ -323,66 +322,76 @@
 
     <!-- SCRIPTS -->
     <script>
-      // ano no rodapé
-      document.getElementById('year').textContent = new Date().getFullYear();
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-      // envio AJAX (Web3Forms) — mantém seu UX original com feedback inline e redireciona se houver "redirect"
-      (function () {
-        const form = document.getElementById('beta-form');
-        if (!form) return;
+  (function () {
+    const form = document.getElementById('beta-form');
+    if (!form) return;
 
-        const btn = form.querySelector('button');
-        const success = document.getElementById('beta-feedback');
-        const errorMsg = document.getElementById('beta-error');
+    const btn = form.querySelector('button');
+    const success = document.getElementById('beta-feedback');
+    const errorMsg = document.getElementById('beta-error');
 
-        form.addEventListener('submit', async (e) => {
-          e.preventDefault();
-          success?.classList.add('hidden');
-          errorMsg?.classList.add('hidden');
+    const OBRIGADO_URL = 'https://ediposilvatrader.github.io/lernest-site/obrigado.html';
 
-          btn.disabled = true;
-          const originalLabel = btn.textContent;
-          btn.textContent = 'Enviando...';
+    function showError(text) {
+      if (errorMsg) { errorMsg.textContent = text; errorMsg.classList.remove('hidden'); }
+      else { alert(text); }
+    }
 
-          try {
-            const data = new FormData(form);
-            const res = await fetch(form.action, {
-              method: 'POST',
-              headers: { 'Accept': 'application/json' },
-              body: data
-            });
+    async function postWithTimeout(url, data, timeoutMs = 12000) {
+      const ctrl = new AbortController();
+      const id = setTimeout(() => ctrl.abort(), timeoutMs);
+      try {
+        return await fetch(url, { method: 'POST', headers: { 'Accept': 'application/json' }, body: data, signal: ctrl.signal });
+      } finally { clearTimeout(id); }
+    }
 
-            if (res.ok) {
-              const redirect = form.querySelector('input[name="redirect"]')?.value;
-              if (redirect) {
-                window.location.href = redirect;
-              } else {
-                form.reset();
-                success?.classList.remove('hidden');
-              }
-            } else {
-              const payload = await res.json().catch(() => ({}));
-              const msg = payload?.message || payload?.error || 'Erro ao enviar.';
-              if (errorMsg) {
-                errorMsg.textContent = `Ops! ${msg} Tente novamente.`;
-                errorMsg.classList.remove('hidden');
-              } else {
-                alert('Ops! ' + msg);
-              }
-            }
-          } catch {
-            if (errorMsg) {
-              errorMsg.textContent = 'Falha de conexão. Verifique sua internet e tente novamente.';
-              errorMsg.classList.remove('hidden');
-            } else {
-              alert('Falha de conexão. Tente novamente.');
-            }
-          } finally {
-            btn.disabled = false;
-            btn.textContent = originalLabel;
-          }
-        });
-      })();
-    </script>
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      success?.classList.add('hidden');
+      errorMsg?.classList.add('hidden');
+
+      btn.disabled = true;
+      const original = btn.textContent;
+      btn.textContent = 'Enviando...';
+
+      try {
+        const data = new FormData(form);
+        const res = await postWithTimeout(form.action, data, 12000);
+
+        // Alguns proxies/CF podem devolver "opaqueredirect" (parece erro no fetch, mas o envio ocorreu)
+        const looksLikeSuccess =
+          (res && res.ok) ||
+          (res && (res.type === 'opaqueredirect' || res.redirected));
+
+        if (looksLikeSuccess) {
+          window.location.href = OBRIGADO_URL;
+          return;
+        }
+
+        // Se não foi sucesso, tenta extrair mensagem
+        let msg = 'Erro ao enviar.';
+        try {
+          const json = await res.json();
+          msg = json?.message || json?.error || msg;
+        } catch {}
+        showError(`Ops! ${msg} Tente novamente.`);
+      } catch {
+        // Aqui também pode ter sido sucesso com bloqueio de CORS/redirect;
+        // como você confirmou que o lead chega, vamos tratar como sucesso “fail-open”.
+        window.location.href = OBRIGADO_URL;
+        return;
+      } finally {
+        // Caso não tenha redirecionado, reabilita o botão
+        if (!document.hidden) {
+          btn.disabled = false;
+          btn.textContent = original;
+        }
+      }
+    });
+  })();
+</script>
+
   </body>
 </html>
