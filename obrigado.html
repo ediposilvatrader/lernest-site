@@ -146,14 +146,23 @@
     <script>
 (function () {
   try {
-    const el = document.getElementById('greet');
+    const el = document.getElementById('thanks');
     const raw = localStorage.getItem('lernest_name') || '';
-    const name = raw.replace(/[^\p{L}\p{M}\s'.-]/gu, '').trim(); // sanitiza
-    if (name) {
-      el.textContent = `Valeu, ${name}!`;
-      el.classList.remove('hidden');
-    }
-    localStorage.removeItem('lernest_name'); // limpa para não “vazar”
+    // mantém letras (com acentos), espaços e ' . -
+    const name = raw.replace(/[^\p{L}\p{M}\s'.-]/gu, '').trim();
+
+    const msgComNome =
+      `Valeu, ${name}! Você entrou na lista da <b>beta da Lernest</b>.<br/>
+       Assim que abrirmos os convites, você receberá um e-mail com as instruções para acesso.`;
+
+    const msgPadrao =
+      `Valeu por entrar na lista da <b>beta da Lernest</b>.<br/>
+       Assim que abrirmos os convites, você receberá um e-mail com as instruções para acesso.`;
+
+    el.innerHTML = name ? msgComNome : msgPadrao;
+
+    // limpa para não “vazar” em visitas futuras
+    localStorage.removeItem('lernest_name');
   } catch {}
 })();
 </script>
