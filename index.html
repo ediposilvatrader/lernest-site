@@ -26,6 +26,10 @@
       .chip { background: linear-gradient(180deg,#FFD86B,#F5B800); }
       .brand-grad { background: linear-gradient(90deg,var(--green-700),var(--green-500)); }
       .shadow-soft { box-shadow: 0 10px 30px rgba(4,46,42,.06); }
+      /* Garante cantos arredondados e elimina qualquer espaço de linha da imagem */
+.img-card{ border-radius: 1rem; overflow: hidden; }            /* ~ rounded-2xl */
+.img-card img{ display:block; width:100%; height:auto; }       /* elimina baseline gap */
+
     </style>
   </head>
   <body class="bg-[var(--offwhite)] text-[var(--green-900)]">
@@ -206,12 +210,11 @@
           </p>
         </div>
        <div class="order-1 md:order-2 flex justify-center">
-  <div class="rounded-2xl shadow-soft overflow-hidden max-w-md">
-    <img src="assets/mascote.png"
-         alt="Mascote Leonardo"
-         class="block w-full h-auto" />
+  <div class="img-card shadow-soft max-w-md">
+    <img src="assets/mascote.png?v=2" alt="Mascote Leonardo" />
   </div>
 </div>
+
       </div>
     </section>
 
